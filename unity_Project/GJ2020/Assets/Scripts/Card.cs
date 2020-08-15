@@ -1,30 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
     #region Inspector
+    public Image image = null;
 
     #endregion
 
+    void OnValidate() {
+        if (this.image == null) this.image = GetComponent<Image>();
+    }
+
+    //[Header("由创建器创建的属性 回头可能private掉")]
+
+    [HideInInspector]
     /// <summary>id</summary>
     public int id = -1;
 
+    [HideInInspector]
     /// <summary>卡牌名字</summary>
     public string cardName = string.Empty;
+    [HideInInspector]
+    /// <summary>卡牌描述</summary>
     public string describe = string.Empty;
 
+    [HideInInspector]
     /// <summary>丧值</summary>
     public int sanValue;
 
+    [HideInInspector]
     /// <summary>消耗体力值</summary>
     public int staminaValue = -1;
 
+    [HideInInspector]
     /// <summary>状态id</summary>
     public int buffId = -1;
 
+    [HideInInspector]
     /// <summary>施加对像</summary>
     public Enum.SubjectToEnum subjectTo = Enum.SubjectToEnum.player;
 
