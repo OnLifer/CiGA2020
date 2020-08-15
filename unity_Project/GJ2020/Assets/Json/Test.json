@@ -1,6 +1,4 @@
 {
     "thekey": "keyName",
-    "arrayTest": [
-        "123", "321"
-    ]
+    "arrayTest": "123"
 }

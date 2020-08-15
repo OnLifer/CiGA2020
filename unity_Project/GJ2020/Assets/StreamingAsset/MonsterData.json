@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "spineFilePath": "/spine/monster/01.asset",
+        "skillName": "技能名",
+        "skillId": 10,
+        "roundNum": 3
+    },
+    {
+        "id": 2,
+        "spineFilePath": "/spine/monster/01.asset",
+        "skillName": "技能名",
+        "skillId": 14,
+        "roundNum": 3
+    },
+    {
+        "id": 3,
+        "spineFilePath": "/spine/monster/01.asset",
+        "skillName": "技能名",
+        "skillId": 10,
+        "roundNum": 1
+    }
+]
