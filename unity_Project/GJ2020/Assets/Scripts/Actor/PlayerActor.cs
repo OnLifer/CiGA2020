@@ -14,6 +14,9 @@ public class PlayerActor : Actor
     /// </summary>
     public int staminaValue = 5;
 
+    public event ValueChange sanChangeEvent;
+    public event ValueChange staminaChangeEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,8 @@ public class PlayerActor : Actor
     /// <param name="_value">变动的数值</param>
     public void SanChange(int _value)
     {
+        int oldSanValue = this.sanValue;
+
         foreach (var item in buffList)
         {
             item.OnSanChange(this, ref _value);
@@ -48,6 +53,8 @@ public class PlayerActor : Actor
         }
 
         this.sanValue += _value;
+
+        this.sanChangeEvent(sanValue, oldSanValue);
         if (this.sanValue <= 0) this.Death();
     }
 
@@ -57,6 +64,8 @@ public class PlayerActor : Actor
     /// <param name="_value">变动的数值</param>
     public void StaminaChange(int _value)
     {
+        int oldStaminaValue = this.staminaValue;
+
         int newStamina;
         if(this.CheckStaminaChange(_value, out newStamina))
         {
@@ -66,6 +75,8 @@ public class PlayerActor : Actor
         {
             this.staminaValue = 0;
         }
+
+        this.staminaChangeEvent(this.staminaValue, oldStaminaValue);
     }
 
     /// <summary>

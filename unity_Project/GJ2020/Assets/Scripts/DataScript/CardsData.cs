@@ -41,4 +41,6 @@ public class CardsData
     {
         CardsData.dataList.Add(this);
     }
+
+
 }

@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void BuffHandler(Actor _actor);
-public delegate void BuffValueChangeHandler(Actor _actor, ref int _value);
-
 public class Buff
 { 
     /// <summary> 状态ID </summary>
