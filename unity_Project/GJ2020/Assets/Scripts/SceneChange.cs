@@ -10,4 +10,5 @@ public class SceneChange
 
     public string imagePath;
 
+    public string spineActionName;
 }

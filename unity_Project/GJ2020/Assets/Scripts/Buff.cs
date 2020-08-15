@@ -22,7 +22,6 @@ public class Buff
     public BuffType type = BuffType.Buff;
 
     /// <summary> buff效果</summary>
-    public BuffHandler buffEffect;
     public string buffEffectStr;
 
     /// <summary> Spine Asset 文件名 </summary>

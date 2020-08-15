@@ -33,7 +33,7 @@ public static class PerformBuff
         {
             return value * 2;
         }
-        return 0;
+        return value;
     }
 
 }
