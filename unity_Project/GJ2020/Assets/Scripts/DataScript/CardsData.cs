@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cards 
+public class CardsData
 {
     public int cardID;
 
