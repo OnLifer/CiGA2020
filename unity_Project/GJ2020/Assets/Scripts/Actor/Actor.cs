@@ -67,6 +67,8 @@ public class Actor : MonoBehaviour
         this.removeBuffList.Add(_buff);
     }
 
+
+    #region 事件方法
     /// <summary>
     /// 回合开始时调用
     /// </summary>
@@ -140,4 +142,5 @@ public class Actor : MonoBehaviour
     {
 
     }
+    #endregion
 }

@@ -42,6 +42,7 @@ public class Buff
     /// <summary> Spine Asset 文件名 </summary>
     public string spineFileName = string.Empty;
 
+    #region 事件属性
     /// <summary>
     /// Event 被添加时
     /// </summary>
@@ -71,7 +72,7 @@ public class Buff
     /// Event san值变化时
     /// </summary>
     public event BuffValueChangeHandler sanChangeEvent;
-
+    #endregion
 
     public Buff()
     {
@@ -111,6 +112,7 @@ public class Buff
     }
 
 
+    #region 各事件的公共方法与私有方法
     public void onCreated(Actor _actor)
     {
         this.createdEvent(_actor);
@@ -210,6 +212,7 @@ public class Buff
     {
         Debug.Log("[Buff] onStaminaChange: " + _value);
     }
+    #endregion
 
     /// <summary>
     /// 检查回合计数

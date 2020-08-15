@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerActor : Actor
@@ -56,13 +57,39 @@ public class PlayerActor : Actor
     /// <param name="_value">变动的数值</param>
     public void StaminaChange(int _value)
     {
+        int newStamina;
+        if(this.CheckStaminaChange(_value, out newStamina))
+        {
+            this.staminaValue = newStamina;
+        }
+        else
+        {
+            this.staminaValue = 0;
+        }
+    }
+
+    /// <summary>
+    /// 对即将进行的体力值变动进行测试 （综合Buff的情况）
+    /// </summary>
+    /// <param name="_value">变动的数值</param>
+    /// <param name="_outStamina">out 计算后的新 stamina</param>
+    /// <returns>当前体力是否足够消耗</returns>
+    public bool CheckStaminaChange(int _value, out int _outStamina)
+    {
         foreach (var item in buffList)
         {
             item.OnStaminaChange(this, ref _value);
             //PerformBuff.ValueEffectHalf(item.buffEffectStr, value);
         }
 
-        this.staminaValue += _value;
+        _outStamina = this.staminaValue + _value;
+
+        if (_outStamina < 0)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public new void Death()

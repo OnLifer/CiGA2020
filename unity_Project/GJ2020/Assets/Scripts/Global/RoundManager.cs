@@ -7,7 +7,7 @@ public class RoundManager : MonoBehaviour
     public static int roundCount = 0;
     public static RoundManager self = null;
 
-    public Actor playerActor = null;
+    public PlayerActor playerActor = null;
     public Actor monsterActor = null;
 
 
