@@ -8,7 +8,7 @@ public class PlayerActor : Actor
     /// <summary>
     /// San值
     /// </summary>
-    public int sanValue = 1;
+    public int sanValue = 100;
     /// <summary>
     /// 体力值
     /// </summary>

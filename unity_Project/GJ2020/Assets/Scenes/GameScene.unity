@@ -372,8 +372,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   skeletonAnimation: {fileID: 0}
+  id: -1
   roundRun: 1
-  sanValue: 1
+  sanValue: 100
   staminaValue: 5
 --- !u!1001 &1150274772
 PrefabInstance:
@@ -596,6 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   skeletonAnimation: {fileID: 0}
+  id: -1
   roundRun: 1
   roundNum: 1
 --- !u!1 &1479760168
@@ -735,6 +737,8 @@ MonoBehaviour:
   imagePath: 
   spineActionName: 
   ske: {fileID: 0}
+  timer: 0
+  timed: 0.5
 --- !u!1 &1594361905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,8 +1097,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundCount: 0
-  playerActor: {fileID: 0}
-  monsterActor: {fileID: 0}
+  playerActor: {fileID: 1129928111}
+  monsterActor: {fileID: 1374538576}
+  cardList: []
 --- !u!1001 &1771647299
 PrefabInstance:
   m_ObjectHideFlags: 0
