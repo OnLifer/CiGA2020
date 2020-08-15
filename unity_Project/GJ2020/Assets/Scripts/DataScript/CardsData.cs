@@ -37,6 +37,14 @@ public class CardsData
     /// </summary>
     public Enum.SubjectToEnum subjectTo = Enum.SubjectToEnum.player;
 
+    /// <summary>变牌触发敌人ID</summary>
+    public int changeMonsterId = -1;
+    /// <summary>所变牌ID</summary>
+    public int changeCardId = -1;
+
+    /// <summary>卡图文件名</summary>
+    public string imageFileName = string.Empty;
+
     public CardsData()
     {
         CardsData.dataList.Add(this);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundManager : MonoBehaviour
+public class RoundManager : MonoSingleton<RoundManager>
 {
     public static int roundCount = 0;
     public static RoundManager self = null;
@@ -45,23 +45,25 @@ public class RoundManager : MonoBehaviour
 
     public void NextRound()
     {
-        if (playerActor.roundRun)
-        {
-            playerActor.Action();
-            return;
-        }
+        ControlManager.instance.NextRound();
 
-        if (monsterActor.roundRun)
-        {
-            monsterActor.Action();
-            return;
-        }
+        //if (playerActor.roundRun)
+        //{
+        //    playerActor.Action();
+        //    return;
+        //}
 
-        RoundManager.roundCount++;
-        Debug.Log("[Next Round] " + RoundManager.roundCount);
+        //if (monsterActor.roundRun)
+        //{
+        //    monsterActor.Action();
+        //    return;
+        //}
 
-        playerActor.roundRun = true;
-        monsterActor.roundRun = true;
+        //RoundManager.roundCount++;
+        //Debug.Log("[Next Round] " + RoundManager.roundCount);
+
+        //playerActor.roundRun = true;
+        //monsterActor.roundRun = true;
     }
 
     //public void NextRound()

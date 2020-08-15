@@ -28,7 +28,7 @@ public class MonsterActor : Actor
         if(this.skillList.Count > 0)
         {
             int skillIndex = Random.Range(0, this.skillList.Count);
-            this.skillList[skillIndex].UseSkill(RoundManager.self.playerActor, RoundManager.self.monsterActor);
+            this.skillList[skillIndex].UseSkill(ControlManager.instance.playerActor, ControlManager.instance.monsterActor);
         }
     }
 }

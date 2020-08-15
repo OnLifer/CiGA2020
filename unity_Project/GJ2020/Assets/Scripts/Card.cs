@@ -30,7 +30,7 @@ public class Card : MonoBehaviour
 
     [HideInInspector]
     /// <summary>丧值</summary>
-    public int sanValue;
+    public int sanValue = 0;
 
     [HideInInspector]
     /// <summary>消耗体力值</summary>
@@ -43,6 +43,17 @@ public class Card : MonoBehaviour
     [HideInInspector]
     /// <summary>施加对像</summary>
     public Enum.SubjectToEnum subjectTo = Enum.SubjectToEnum.player;
+
+    [HideInInspector]
+    /// <summary>变牌触发敌人ID</summary>
+    public int changeMonsterId = -1;
+    [HideInInspector]
+    /// <summary>所变牌ID</summary>
+    public int changeCardId = -1;
+
+    [HideInInspector]
+    /// <summary>卡图文件名</summary>
+    public string imageFileName = string.Empty;
 
     /// <summary>
     /// 卡牌点击事件
@@ -58,9 +69,9 @@ public class Card : MonoBehaviour
     /// <returns>体力是否足够消耗</returns>
     public bool CheckPlayerStamina()
     {
-        bool canChange = RoundManager.self.playerActor.CheckStaminaChange(this.staminaValue, out int outValue);
+        bool canChange = ControlManager.instance.playerActor.CheckStaminaChange(this.staminaValue, out int outValue);
         // 判断是否足够变化 可以的话将值修改为新值
-        if(canChange) RoundManager.self.playerActor.staminaValue = outValue;
+        if(canChange) ControlManager.instance.playerActor.staminaValue = outValue;
         return canChange;
     }
 
@@ -77,17 +88,19 @@ public class Card : MonoBehaviour
             return;
         }
 
-        Actor target = this.subjectTo == Enum.SubjectToEnum.enemy ? RoundManager.self.monsterActor as Actor : RoundManager.self.playerActor as Actor;
+        Actor target = this.subjectTo == Enum.SubjectToEnum.enemy ? ControlManager.instance.monsterActor as Actor : ControlManager.instance.playerActor as Actor;
 
         // 向目标施加buff
         if (this.buffId > -1) BuffCreater.AddBuffToActor(target, this.buffId);
 
         // 对玩家进行San值变更
-        RoundManager.self.playerActor.SanChange(this.sanValue);
+        ControlManager.instance.playerActor.SanChange(this.sanValue);
 
         // 移除卡牌 如果必要的话
         this.RemoveCard();
     }
+
+    //public void 
 
     /// <summary>
     /// 移除卡牌

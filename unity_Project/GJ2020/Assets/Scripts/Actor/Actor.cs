@@ -135,7 +135,7 @@ public class Actor : MonoBehaviour
 
         this.removeBuffList.Clear();
         this.roundRun = false;
-        RoundManager.self.NextRound();
+        ControlManager.instance.NextRound();
     }
 
     /// <summary>
