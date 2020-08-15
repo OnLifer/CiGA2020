@@ -1,0 +1,6 @@
+﻿monsterSkill_Id,monsterSkill_Name,forceCondition_Id,force_Object,energy_Change,san_Change,spineAnime_Name
+5101,快结婚,2004,player,0,-10,jineng1
+5102,工资多少,0,player,-1,-5,jineng2
+5103,快生孩子,2005,player,0,-15,jineng1
+5104,必须给亲戚孩子压岁钱,0,player,-3,-7,jineng2
+5001,七大姑八大姨的翻倍加成,2101,enemy,0,0,jineng1
