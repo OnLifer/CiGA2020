@@ -17,7 +17,7 @@ public class MonsterData
     /// <summary>
     /// Spine Asset 文件路径
     /// </summary>
-    public string spineFilePath = string.Empty;
+    public string spineFileName = string.Empty;
 
     /// <summary>
     /// 技能名称
@@ -51,7 +51,13 @@ public class MonsterData
 
     public string toString()
     {
-        return "ID: " + this.id + " SN: " + this.skillName + " SI:" + this.skillId + "RN:" + roundNum;
+        string skillIdStr = "";
+        foreach (var item in this.skillId)
+        {
+            skillIdStr += item + ",";
+        }
+
+        return "ID: " + this.id + " SN: " + this.skillName + " SI:" + skillIdStr + "RN:" + roundNum;
     }
 }
 

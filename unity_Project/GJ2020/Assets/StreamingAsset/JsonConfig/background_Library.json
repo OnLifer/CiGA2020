@@ -1,0 +1,27 @@
+[
+    {
+        "id_Bg": 301,
+        "bg_San_Minithreshold": 80,
+        "bg_SpineAnime_Name": "beijing1"
+    },
+    {
+        "id_Bg": 302,
+        "bg_San_Minithreshold": 60,
+        "bg_SpineAnime_Name": "beijing2"
+    },
+    {
+        "id_Bg": 303,
+        "bg_San_Minithreshold": 40,
+        "bg_SpineAnime_Name": "beijing3"
+    },
+    {
+        "id_Bg": 304,
+        "bg_San_Minithreshold": 20,
+        "bg_SpineAnime_Name": "beijing4"
+    },
+    {
+        "id_Bg": 305,
+        "bg_San_Minithreshold": 0,
+        "bg_SpineAnime_Name": "beijing5"
+    }
+]

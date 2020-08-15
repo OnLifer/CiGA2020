@@ -12,6 +12,7 @@ public class DataReader : MonoBehaviour
     void Start()
     {
         this.ReadMonsterData();
+        this.ReadBackGrounpData();
     }
 
     // Update is called once per frame
@@ -95,6 +96,13 @@ public class DataReader : MonoBehaviour
     /// </summary>
     public void ReadBackGrounpData()
     {
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/background_Library.json");//读取数据，转换成数据流
+        string jsonStr = streamreader.ReadToEnd();
+        List<BackgroundData> data = JsonConvert.DeserializeObject<List<BackgroundData>>(jsonStr);
 
+        foreach (BackgroundData item in data)
+        {
+            Debug.Log(item.ShowString());
+        }
     }
 }
