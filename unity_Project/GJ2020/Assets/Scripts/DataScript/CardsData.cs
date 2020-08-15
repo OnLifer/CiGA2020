@@ -50,5 +50,20 @@ public class CardsData
         CardsData.dataList.Add(this);
     }
 
+    public Card CreateMe()
+    {
+        Card newCard = new Card(
+            this.id,
+            this.name,
+            this.staminaValue,
+            this.sanValue,
+            this.buffId,
+            this.subjectTo,
+            this.changeMonsterId,
+            this.changeCardId,
+            this.imageFileName
+        );
 
+        return newCard;
+    }
 }

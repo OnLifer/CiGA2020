@@ -8,6 +8,8 @@ public class ControlManager :MonoSingleton<ControlManager>
     public PlayerActor playerActor = null;
     public MonsterActor monsterActor = null;
 
+    public List<Card> cardList = new List<Card>();
+
     /// <summary>
     /// 下一回合
     /// </summary>
@@ -31,6 +33,8 @@ public class ControlManager :MonoSingleton<ControlManager>
         this.playerActor.roundRun = true;
         this.monsterActor.roundRun = true;
     }
+
+
 
     public void OnCardClick()
     {

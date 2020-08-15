@@ -9,13 +9,27 @@ public class Actor : MonoBehaviour
     {
         None, Player, Monster
     }
+
+    #region Inspector
     [SerializeField]
     public ActorType type = ActorType.None;
 
     public SkeletonAnimation skeletonAnimation = null;
+    #endregion
+
+    //[HideInInspector]
+    
+    /// <summary>Buff列表</summary>
     public List<Buff> buffList = new List<Buff>();
+    [HideInInspector]
+    /// <summary>待移除的Buff列表</summary>
     private List<Buff> removeBuffList = new List<Buff>();
 
+    [HideInInspector]
+    /// <summary>原id</summary>
+    public int id = -1;
+    [HideInInspector]
+    /// <summary>是否可以进行回合</summary>
     public bool roundRun = true;
 
     // Start is called before the first frame update

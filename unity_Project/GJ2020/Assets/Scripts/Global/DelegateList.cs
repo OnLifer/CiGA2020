@@ -20,4 +20,15 @@ public delegate void BuffValueChangeHandler(Actor _actor, ref int _value);
 /// </summary>
 /// <param name="_now">当前的值</param>
 /// <param name="_old">变动前的值</param>
-public delegate void ValueChange(int _now, int _old);
+public delegate void ValueChangeHandler(int _now, int _old);
+
+/// <summary>
+/// 传递数值的委托
+/// </summary>
+/// <param name="_value">传递的数值</param>
+public delegate void ValueToHandler(int _value);
+
+/// <summary>
+/// 通常委托 不带参数与返回值
+/// </summary>
+public delegate void NormalHandler();

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
 using UnityEngine;
@@ -55,6 +56,35 @@ public class Card : MonoBehaviour
     /// <summary>卡图文件名</summary>
     public string imageFileName = string.Empty;
 
+    /// <summary>使用卡的事件</summary>
+    public event NormalHandler useCardEvent;
+
+    /// <summary>卡片变化事件</summary>
+    public event ValueToHandler changeCardEvent;
+
+    public Card() { }
+    public Card(
+        int _id,
+        string _name,
+        int _staminaValue,
+        int _sanValue,
+        int _buffId,
+        Enum.SubjectToEnum _subjectTo,
+        int _changeMonsterId,
+        int _changeCardId,
+        string _imageFileName
+    ) {
+        this.id = _id;
+        this.cardName = _name;
+        this.staminaValue = _staminaValue;
+        this.sanValue = _sanValue;
+        this.buffId = _buffId;
+        this.subjectTo = _subjectTo;
+        this.changeMonsterId = _changeMonsterId;
+        this.changeCardId = _changeCardId;
+        this.imageFileName = _imageFileName;
+    }
+
     /// <summary>
     /// 卡牌点击事件
     /// </summary>
@@ -88,6 +118,9 @@ public class Card : MonoBehaviour
             return;
         }
 
+        // 调用事件
+        this.useCardEvent();
+
         Actor target = this.subjectTo == Enum.SubjectToEnum.enemy ? ControlManager.instance.monsterActor as Actor : ControlManager.instance.playerActor as Actor;
 
         // 向目标施加buff
@@ -96,11 +129,32 @@ public class Card : MonoBehaviour
         // 对玩家进行San值变更
         ControlManager.instance.playerActor.SanChange(this.sanValue);
 
+        if(target.id > -1 && this.changeMonsterId == target.id)
+        {
+            this.ChangeCard(this.changeCardId);
+        }
+
         // 移除卡牌 如果必要的话
         this.RemoveCard();
     }
 
-    //public void 
+    /// <summary>
+    /// 卡牌变换
+    /// </summary>
+    /// <param name="_cardId">目标卡牌id</param>
+    public void ChangeCard(int _cardId)
+    {
+        int index = ControlManager.instance.cardList.FindIndex(t => t.id == this.id);
+
+        CardsData cardsData = CardsData.dataList.Find(t => t.id == _cardId);
+        Card newCard = cardsData.CreateMe();
+
+        ControlManager.instance.cardList[index] = newCard;
+        //ControlManager.instance.cardList[index] = 
+        //ControlManager.instance.cardList.Remove(this);
+        // 调用事件
+        this.changeCardEvent(_cardId);
+    }
 
     /// <summary>
     /// 移除卡牌

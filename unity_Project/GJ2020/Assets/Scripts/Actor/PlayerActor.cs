@@ -14,8 +14,8 @@ public class PlayerActor : Actor
     /// </summary>
     public int staminaValue = 5;
 
-    public event ValueChange sanChangeEvent;
-    public event ValueChange staminaChangeEvent;
+    public event ValueChangeHandler sanChangeEvent;
+    public event ValueChangeHandler staminaChangeEvent;
 
     // Start is called before the first frame update
     void Start()
