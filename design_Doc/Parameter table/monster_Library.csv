@@ -1,0 +1,3 @@
+﻿monster_ID,monster_Name,init_RoundNum,monsterskillid_Array,start_Order,spineAnime_Name
+401,焦虑,3,"[5101,5102,5101]",1,mayi01
+402,抑郁,6,"[5101,5103,5001,5002,5004]",2,mayi01
