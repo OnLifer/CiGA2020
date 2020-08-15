@@ -17,7 +17,6 @@ public class Card : MonoBehaviour
     }
 
     //[Header("由创建器创建的属性 回头可能private掉")]
-
     [HideInInspector]
     /// <summary>id</summary>
     public int id = -1;
