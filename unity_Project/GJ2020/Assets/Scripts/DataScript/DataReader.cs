@@ -37,12 +37,11 @@ public class DataReader : MonoBehaviour
         StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/MonsterData.json");//读取数据，转换成数据流
         string jsonStr = streamreader.ReadToEnd();
         List<MonsterData> data = JsonConvert.DeserializeObject<List<MonsterData>>(jsonStr);
-        Debug.Log(data.ToString());
 
-        //foreach (MonsterData item in data.dataList)
-        //{
-
-        //}
+        foreach (MonsterData item in data)
+        {
+            Debug.Log(item.toString());
+        }
     }
 
     /// <summary>

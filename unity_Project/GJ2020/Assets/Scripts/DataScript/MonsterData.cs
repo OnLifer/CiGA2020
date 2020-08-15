@@ -36,6 +36,16 @@ public class MonsterData
     /// 回合数
     /// </summary>
     public int roundNum = 1;
+
+    //public MonsterData()
+    //{
+    //    Debug.Log("Created Me");
+    //}
+
+    public string toString()
+    {
+        return "ID: " + this.id + " SN: " + this.skillName + " SI:" + this.skillId + "RN:" + roundNum;
+    }
 }
 
 /// <summary>
