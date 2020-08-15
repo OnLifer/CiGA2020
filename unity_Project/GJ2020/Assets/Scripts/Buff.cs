@@ -5,31 +5,27 @@ using UnityEngine;
 public delegate void BuffHandler(Actor _actor);
 public class Buff
 { 
-    /// <summary>
-    /// 状态ID
-    /// </summary>
+    /// <summary> 状态ID </summary>
     public int id = -1;
-    /// <summary>
-    /// 状态名
-    /// </summary>
+    /// <summary> 状态名 </summary>
     public string name = string.Empty;
-    /// <summary>
-    /// 回合数
-    /// </summary>
+    /// <summary>回合数 </summary>
     public int roundNum = 1;
+    /// <summary>依附的ACT</summary>
+    public Actor owner;
 
     public enum BuffType
     {
         Buff, DeBuff
     }
-    /// <summary>
-    /// buff类型
-    /// </summary>
+    /// <summary> buff类型</summary>
     public BuffType type = BuffType.Buff;
 
-    /// <summary>
-    /// Spine Asset 文件名
-    /// </summary>
+    /// <summary> buff效果</summary>
+    public BuffHandler buffEffect;
+    public string buffEffectStr;
+
+    /// <summary> Spine Asset 文件名 </summary>
     public string spineFileName = string.Empty;
 
     public event BuffHandler createdEvent;
@@ -67,6 +63,13 @@ public class Buff
     }
     private void _onRoundStart(Actor _actor)
     {
+        //体力恢复  手牌刷新  状态效果
+        GlobalManager.fatigueValues = 5;//也可能不是5
+                                        //手牌刷新 还没写
+
+        //回合开始时 调用状态
+
+
         Debug.Log("[Buff] onRoundStart" + this.id);
     }
 

@@ -110,9 +110,12 @@ public class Actor : MonoBehaviour
     /// <summary>
     /// 被击中
     /// </summary>
-    public void BeHit()
+    public void BeHit(int value)
     {
-
+        foreach (var item in buffList)
+        {
+                PerformBuff.ValueEffectHalf(item.buffEffectStr, value);
+        }
     }
 
     /// <summary>
