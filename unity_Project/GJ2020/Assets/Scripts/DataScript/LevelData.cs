@@ -10,5 +10,5 @@ public class LevelData
     /// <summary>
     /// 怪物队列
     /// </summary>
-    public List<int> monsterList = null;
+    public static List<int> monsterList = null;
 }

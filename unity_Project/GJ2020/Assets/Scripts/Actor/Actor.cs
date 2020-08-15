@@ -5,10 +5,18 @@ using Spine.Unity;
 
 public class Actor : MonoBehaviour
 {
+    public enum ActorType
+    {
+        None, Player, Monster
+    }
+    [SerializeField]
+    public ActorType type = ActorType.None;
 
     public SkeletonAnimation skeletonAnimation = null;
     public List<Buff> buffList = new List<Buff>();
     private List<Buff> removeBuffList = new List<Buff>();
+
+    public bool roundRun = true;
 
     // Start is called before the first frame update
     void Start()
@@ -110,12 +118,11 @@ public class Actor : MonoBehaviour
     /// <summary>
     /// 被击中
     /// </summary>
-    public void BeHit(int value)
+    public void BeHit(int _value)
     {
-        foreach (var item in buffList)
-        {
-                PerformBuff.ValueEffectHalf(item.buffEffectStr, value);
-        }
+        
+
+
     }
 
     /// <summary>

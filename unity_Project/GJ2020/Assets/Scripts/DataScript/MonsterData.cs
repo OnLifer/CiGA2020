@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class MonsterData
 {
+    public static List<MonsterData> dataList = new List<MonsterData>();
+
     /// <summary>
     /// 怪物id
     /// </summary>
@@ -25,7 +27,7 @@ public class MonsterData
     /// <summary>
     /// 技能ID
     /// </summary>
-    public int skillId = -1;
+    public List<int> skillId = null;
 
     /// <summary>
     /// 生命值
@@ -42,16 +44,21 @@ public class MonsterData
     //    Debug.Log("Created Me");
     //}
 
+    public MonsterData()
+    {
+        MonsterData.dataList.Add(this);
+    }
+
     public string toString()
     {
         return "ID: " + this.id + " SN: " + this.skillName + " SI:" + this.skillId + "RN:" + roundNum;
     }
 }
 
-/// <summary>
-/// 怪物数据表
-/// </summary>
-public class MonsterDataList
-{
-    public List<MonsterData> dataList = null;
-}
+///// <summary>
+///// 怪物数据表
+///// </summary>
+//public class MonsterDataList
+//{
+//    public List<MonsterData> dataList = null;
+//}
