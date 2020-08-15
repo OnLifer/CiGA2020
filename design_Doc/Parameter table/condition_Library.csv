@@ -1,0 +1,9 @@
+﻿condition_ID,condition_Name,condition_Sort,take_Rounds,bool_Now,bool_EveryRound,energy_ChangeVal,san_ChangeVal,execute_Condition,png_Name,spine_Name
+2001,停止行动两回合,deBuff,1,TRUE,TRUE,0,,stop_Round,tingzhi,0
+2002,效果减半两回合,deBuff,1,TRUE,TRUE,0,,effect_Halved,xiajiantou,0
+2003,三会合后崩溃,deBuff,2,FALSE,FALSE,0,-101,0,heikulou,0
+2004,测试停止行动一回合1,deBuff,0,TRUE,FALSE,0,,stop_Round,tingzhi,0
+2005,测试停止行动一回合2,deBuff,0,TRUE,TRUE,0,,stop_Round,tingzhi,0
+2101,效果翻倍一回合,buff,0,TRUE,FALSE,0,0,doubling_Effect,shangjiantou,0
+2102,每回合增加1体力 持续两回合,buff,1,TRUE,TRUE,1,0,0,jirou,0
+2103,每回合恢复10丧值 持续两回合,buff,1,TRUE,TRUE,0,10,0,hongxin,0

@@ -1,6 +1,10 @@
 各表内容命名规则：
 卡牌库（card_Library）：第一位是库序号（序号为1），第二三位是id序号（从01开始）比如，card_Id:101
+
 状态库（condition Library）:第一位是库序号（序号为2），第二位是状态分类，buff=1,debuff=0,第三四位是id序号（从01开始），比如，condition_Id：2101
+
 场景库（background_Library）:第一位是库序号（序号为3），第二三位是id序号（从01开始），比如id_Background：301
+
 怪物库（monster_Library）：第一位是库序号（序号为4），第二三位是id序号（从01开始），比如monster_Id：401
+
 怪物技能特性表（monsterskill_Library）:第一位是库序号（序号为5），第二位是施加对象，player=1,enemy=0,第三四位是id序号（从01开始），比如,monsterskill_id:5101.
