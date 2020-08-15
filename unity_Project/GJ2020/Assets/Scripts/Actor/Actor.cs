@@ -31,6 +31,41 @@ public class Actor : MonoBehaviour
     }
 
     /// <summary>
+    /// 我的回合 执行动作
+    /// </summary>
+    public void Action()
+    {
+        this.OnRoundStart();
+        if (this.roundRun)
+        {
+            this.ActionTodo();
+        }
+        else
+        {
+            this.EndMyRound();
+        }
+
+
+    }
+
+    /// <summary>
+    /// 用于继承复写的具体行为
+    /// </summary>
+    public void ActionTodo()
+    {
+        // todo...
+        this.EndMyRound();
+    }
+
+    /// <summary>
+    /// 结束我的回合
+    /// </summary>
+    public void EndMyRound()
+    {
+        this.OnRoundEnd();
+    }
+
+    /// <summary>
     /// 添加Buff 并自动调用buff.onCreated()
     /// </summary>
     /// <param name="_buff">buff实例</param>
@@ -99,6 +134,8 @@ public class Actor : MonoBehaviour
         }
 
         this.removeBuffList.Clear();
+        this.roundRun = false;
+        RoundManager.self.NextRound();
     }
 
     /// <summary>

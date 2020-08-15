@@ -77,7 +77,7 @@ public class Card : MonoBehaviour
             return;
         }
 
-        Actor target = this.subjectTo == Enum.SubjectToEnum.enemy ? RoundManager.self.monsterActor : RoundManager.self.playerActor;
+        Actor target = this.subjectTo == Enum.SubjectToEnum.enemy ? RoundManager.self.monsterActor as Actor : RoundManager.self.playerActor as Actor;
 
         // 向目标施加buff
         if (this.buffId > -1) BuffCreater.AddBuffToActor(target, this.buffId);

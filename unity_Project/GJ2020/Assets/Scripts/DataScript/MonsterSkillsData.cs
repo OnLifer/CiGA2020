@@ -46,4 +46,35 @@ public class MonsterSkillsData
     {
         MonsterSkillsData.dataList.Add(this);
     }
+
+    /// <summary>
+    /// 创建对应的MonsterSkill
+    /// </summary>
+    /// <returns>对应的 MonsterSkill实例</returns>
+    public MonsterSkill CreateMe()
+    {
+        MonsterSkill retMonsterSkill = new MonsterSkill(
+            this.id, 
+            this.name,
+            this.buffId,
+            this.subjectTo,
+            this.staminaChange,
+            this.sanChange,
+            this.spineFileName
+        );
+
+        //public int id = -1;
+        //public string name = string.Empty;
+        ///// <summary>施加的buff的id</summary>
+        //public int buffId = -1;
+
+        //public Enum.SubjectToEnum subjectTo = Enum.SubjectToEnum.player;
+
+        //public int staminaValue = 0;
+        //public int sanValue = 0;
+
+        //public string spineFileName = string.Empty;
+
+        return retMonsterSkill;
+    }
 }

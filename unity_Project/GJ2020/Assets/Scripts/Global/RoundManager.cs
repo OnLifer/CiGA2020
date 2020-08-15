@@ -8,7 +8,7 @@ public class RoundManager : MonoBehaviour
     public static RoundManager self = null;
 
     public PlayerActor playerActor = null;
-    public Actor monsterActor = null;
+    public MonsterActor monsterActor = null;
 
 
     //void OnValidate() {
@@ -45,32 +45,57 @@ public class RoundManager : MonoBehaviour
 
     public void NextRound()
     {
-        if(this.playerActor != null)
+        if (playerActor.roundRun)
         {
-            this.playerActor.OnRoundEnd();
+            playerActor.Action();
+            return;
         }
 
-        if(this.monsterActor != null)
+        if (monsterActor.roundRun)
         {
-            this.playerActor.OnRoundEnd();
+            monsterActor.Action();
+            return;
         }
 
-        this.NewRound();
-    }
-
-    public void NewRound()
-    {
         RoundManager.roundCount++;
-        Debug.Log("[New Round] " + RoundManager.roundCount);
+        Debug.Log("[Next Round] " + RoundManager.roundCount);
 
-        if (this.playerActor != null)
-        {
-            this.playerActor.OnRoundStart();
-        }
-
-        if (this.monsterActor != null)
-        {
-            this.playerActor.OnRoundStart();
-        }
+        playerActor.roundRun = true;
+        monsterActor.roundRun = true;
     }
+
+    //public void NextRound()
+    //{
+    //    RoundManager.roundCount++;
+    //    Debug.Log("[Next Round] " + RoundManager.roundCount);
+
+    //    if (this.playerActor != null)
+    //    {
+    //        this.playerActor.OnRoundEnd();
+    //        this.playerActor.OnRoundStart();
+    //    }
+
+    //    if(this.monsterActor != null)
+    //    {
+    //        this.playerActor.OnRoundEnd();
+    //        this.playerActor.OnRoundStart();
+    //    }
+
+    //    this.NewRound();
+    //}
+
+    
+
+    //public void NewRound()
+    //{
+    //    if (this.playerActor != null)
+    //    {
+    //        this.playerActor.OnRoundStart();
+    //    }
+
+    //    if (this.monsterActor != null)
+    //    {
+    //        this.playerActor.OnRoundStart();
+    //    }
+    //}
 }

@@ -8,7 +8,7 @@ public class MonsterActor : Actor
     /// 存在回合数
     /// </summary>
     public int roundNum = 1;
-    
+    public List<MonsterSkill> skillList = new List<MonsterSkill>();
 
 
     // Start is called before the first frame update
@@ -23,5 +23,12 @@ public class MonsterActor : Actor
         
     }
 
-    
+    public new void ActionTodo()
+    {
+        if(this.skillList.Count > 0)
+        {
+            int skillIndex = Random.Range(0, this.skillList.Count);
+            this.skillList[skillIndex].UseSkill(RoundManager.self.playerActor, RoundManager.self.monsterActor);
+        }
+    }
 }
