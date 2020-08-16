@@ -1,0 +1,8 @@
+﻿card_ID,card_Name,card_Desc,energy_Take,forceCondition_Id,force_Object,san_Change,monster_Id,exCard_ID,png_Name
+101,你说呢1,你说呢！你说呢！,1,2001,player,-3,402,105,card01
+102,你说呢2,你说呢！你说呢！,2,2002,enemy,-2,402,104,card02
+103,你说呢3,你说呢！你说呢！,1,2003,player,-1,402,107,card03
+104,你说呢4,你说呢！你说呢！,2,0,enemy,0,401,102,card04
+105,你说呢5,你说呢！你说呢！,1,0,player,1,401,101,card05
+106,你说呢6,你说呢！你说呢！,2,2101,enemy,2,401,103,card06
+107,你说呢7,你说呢！你说呢！,1,2102,player,3,401,106,card07
