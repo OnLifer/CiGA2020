@@ -1,0 +1,14 @@
+相应的Excel表中内容填写完毕后：
+1.删除首行的中文字段
+2.另存为 csv 逗号分隔符(UTF-8) ！！！一定要另存为，直接保存的话请直接rollback Github之前的master，以便恢复文档。
+	2.1.如果所用Excel版本不能直接存成UTF-8的CSV，那就直接存成普通csv
+	2.2.存为csv后使用记事本打开，并另存为编码格式为UTF-8的csv
+3.打开 https://csvjson.com/csv2json
+4.在Upload a CSV file 处点击下面的加号 +Select a file…… 上传你刚才保存的那个csv
+5.在页面右边的Options，Separator处下拉菜单选择 Comma ，Output:点选Array ，后边的Minify选框打上对勾
+6.在页面左下角点击紫色按钮 Convert
+7.之后点击右下边紫色按钮Download
+8.把下载下来的json文件重命名，改成之前上传的CSV的文件名
+9.把这个json文件放在 ..\CiGA2020\unity_Project\GJ2020\Assets\StreamingAsset\JsonConfig 这目录下
+10.在github desktop中commit
+11.以上做完后，程序即可直接使用你的json文件了
