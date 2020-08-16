@@ -7,7 +7,7 @@ public class ShowView : MonoBehaviour
 {
     float timer;
 
-    float timeEnd=10;
+    public float timeEnd=17;
     // Start is called before the first frame update
     void Start()
     {
