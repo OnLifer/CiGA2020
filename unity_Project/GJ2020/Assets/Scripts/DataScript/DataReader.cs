@@ -4,9 +4,14 @@ using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
 
-public class DataReader : MonoBehaviour
+public class DataReader : MonoSingleton<DataReader>
 {
     //public string monsterDataFileName = string.Empty;
+
+    private void Awake()
+    {
+        this.GetAllData();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +19,8 @@ public class DataReader : MonoBehaviour
         //this.ReadMonsterData();
         //this.ReadBackGrounpData();
         //this.ReadCardsData();
-        this.ReadBuffData();
+        //this.ReadBuffData();
+        //this.ReadMonsterSkillData();
     }
 
     // Update is called once per frame
@@ -32,12 +38,12 @@ public class DataReader : MonoBehaviour
 
         this.ReadCardsData();
 
-        this.ReadLevelData();
+        //this.ReadLevelData();
 
         this.ReadBackGrounpData();
 
-        this.ReadMonsterData();
         this.ReadMonsterSkillData();
+        this.ReadMonsterData();
     }
 
     /// <summary>
@@ -45,14 +51,16 @@ public class DataReader : MonoBehaviour
     /// </summary>
     public void ReadMonsterData()
     {
-        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/MonsterData.json");//读取数据，转换成数据流
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/monster_Library.json");//读取数据，转换成数据流
         string jsonStr = streamreader.ReadToEnd();
         List<MonsterData> data = JsonConvert.DeserializeObject<List<MonsterData>>(jsonStr);
 
         foreach (MonsterData item in data)
         {
-            Debug.Log(item.toString());
+            LevelData.monsterList.Add(item.start_Order, item.monster_ID);
+            Debug.Log(item.ShowString());
         }
+        Debug.Log(JsonConvert.SerializeObject(LevelData.monsterList));
     }
 
     /// <summary>
@@ -60,20 +68,27 @@ public class DataReader : MonoBehaviour
     /// </summary>
     public void ReadMonsterSkillData()
     {
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/monsterskill_Library.json");//读取数据，转换成数据流
+        string jsonStr = streamreader.ReadToEnd();
+        List<MonsterSkillsData> data = JsonConvert.DeserializeObject<List<MonsterSkillsData>>(jsonStr);
 
+        foreach (MonsterSkillsData item in data)
+        {
+            Debug.Log(item.ShowString());
+        }
     }
 
     /// <summary>
     /// 加载关卡数据
     /// </summary>
-    public void ReadLevelData()
-    {
-        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/LevelData.json");//读取数据，转换成数据流
-        string jsonStr = streamreader.ReadToEnd();
-        //LevelData data = JsonConvert.DeserializeObject<LevelData>(jsonStr);
-        List<int> data = JsonConvert.DeserializeObject<List<int>>(jsonStr);
-        LevelData.monsterList = data;
-    }
+    //public void ReadLevelData()
+    //{
+    //    StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/LevelData.json");//读取数据，转换成数据流
+    //    string jsonStr = streamreader.ReadToEnd();
+    //    //LevelData data = JsonConvert.DeserializeObject<LevelData>(jsonStr);
+    //    List<int> data = JsonConvert.DeserializeObject<List<int>>(jsonStr);
+    //    LevelData.monsterList = data;
+    //}
 
     /// <summary>
     /// 加载Buff数据

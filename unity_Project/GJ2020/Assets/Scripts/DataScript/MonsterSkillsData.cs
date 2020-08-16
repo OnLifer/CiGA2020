@@ -9,15 +9,15 @@ public class MonsterSkillsData
     /// <summary>
     /// 技能id
     /// </summary>
-    public int id = -1;
+    public int monsterSkill_Id = -1;
     /// <summary>
     /// 技能名称
     /// </summary>
-    public string name = string.Empty;
+    public string monsterSkill_Name = string.Empty;
     /// <summary>
     /// 施加的buff的id
     /// </summary>
-    public int buffId = -1;
+    public int forceCondition_Id = -1;
 
     /// <summary>
     /// 施加对像得枚举
@@ -26,21 +26,21 @@ public class MonsterSkillsData
     /// <summary>
     /// 施加对像类别
     /// </summary>
-    public Enum.SubjectToEnum subjectTo = Enum.SubjectToEnum.player;
+    public Enum.SubjectToEnum force_Object = Enum.SubjectToEnum.player;
 
     /// <summary>
     /// 体力的变动值
     /// </summary>
-    public int staminaChange = 0;
+    public int energy_Change = 0;
     /// <summary>
     /// san值得变动值
     /// </summary>
-    public int sanChange = 0;
+    public int san_Change = 0;
 
     /// <summary>
     /// 对应的Spine得文件名
     /// </summary>
-    public string spineFileName = string.Empty;
+    public string spineAnime_Name = string.Empty;
 
     public MonsterSkillsData()
     {
@@ -54,13 +54,13 @@ public class MonsterSkillsData
     public MonsterSkill CreateMe()
     {
         MonsterSkill retMonsterSkill = new MonsterSkill(
-            this.id, 
-            this.name,
-            this.buffId,
-            this.subjectTo,
-            this.staminaChange,
-            this.sanChange,
-            this.spineFileName
+            this.monsterSkill_Id, 
+            this.monsterSkill_Name,
+            this.forceCondition_Id,
+            this.force_Object,
+            this.energy_Change,
+            this.san_Change,
+            this.spineAnime_Name
         );
 
         //public int id = -1;
@@ -76,5 +76,10 @@ public class MonsterSkillsData
         //public string spineFileName = string.Empty;
 
         return retMonsterSkill;
+    }
+
+    public string ShowString()
+    {
+        return this.monsterSkill_Id + " : " + this.monsterSkill_Name + " : " + this.forceCondition_Id + " : " + this.force_Object + " : " + this.energy_Change + " : " + this.san_Change + " : " + this.spineAnime_Name;
     }
 }

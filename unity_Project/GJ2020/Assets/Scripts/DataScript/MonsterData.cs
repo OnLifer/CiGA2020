@@ -12,32 +12,34 @@ public class MonsterData
     /// <summary>
     /// 怪物id
     /// </summary>
-    public int id = -1;
+    public int monster_ID = -1;
 
-    /// <summary>
-    /// Spine Asset 文件路径
-    /// </summary>
-    public string spineFileName = string.Empty;
-
-    /// <summary>
-    /// 技能名称
-    /// </summary>
-    public string skillName = string.Empty;
-
-    /// <summary>
-    /// 技能ID
-    /// </summary>
-    public List<int> skillId = null;
-
-    /// <summary>
-    /// 生命值
-    /// </summary>
-    //public int hp = 100;
+    /// <summary>怪物名</summary>
+    public string monster_Name = string.Empty;
 
     /// <summary>
     /// 回合数
     /// </summary>
-    public int roundNum = 1;
+    public int init_RoundNum = 1;
+
+    /// <summary>
+    /// 技能ID
+    /// </summary>
+    public List<int> monsterskillid_Array = null;
+
+    /// <summary>出厂顺序</summary>
+    public int start_Order = 0;
+
+    /// <summary>
+    /// Spine Asset 文件路径
+    /// </summary>
+    public string spineAnime_Name = string.Empty;
+
+    /// <summary>
+    /// 技能名称
+    /// </summary>
+    //public string skillName = string.Empty;
+
 
     //public MonsterData()
     //{
@@ -49,16 +51,39 @@ public class MonsterData
         MonsterData.dataList.Add(this);
     }
 
-    public string toString()
+    public MonsterActor CreateMe()
+    {
+        MonsterActor monsterActor = new MonsterActor(
+            this.monster_ID,
+            this.monster_Name,
+            this.monsterskillid_Array,
+            this.spineAnime_Name
+        );
+
+        return monsterActor;
+    }
+
+    public string ShowString()
     {
         string skillIdStr = "";
-        foreach (var item in this.skillId)
+        foreach (var item in this.monsterskillid_Array)
         {
             skillIdStr += item + ",";
         }
 
-        return "ID: " + this.id + " SN: " + this.skillName + " SI:" + skillIdStr + "RN:" + roundNum;
+        return this.monster_ID + " : " + this.monster_Name + " : " + skillIdStr + " : " + this.spineAnime_Name;
     }
+
+    //public string toString()
+    //{
+    //    string skillIdStr = "";
+    //    foreach (var item in this.skillId)
+    //    {
+    //        skillIdStr += item + ",";
+    //    }
+
+    //    return "ID: " + this.id + " SN: " + this.skillName + " SI:" + skillIdStr + "RN:" + roundNum;
+    //}
 }
 
 ///// <summary>

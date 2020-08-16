@@ -8,7 +8,15 @@ public class MonsterActor : Actor
     /// 存在回合数
     /// </summary>
     public int roundNum = 1;
+
+    /// <summary>怪物名</summary>
+    public string monsterName = string.Empty;
+
+    /// <summary>技能队列</summary>
     public List<MonsterSkill> skillList = new List<MonsterSkill>();
+
+    /// <summary>Spine 动画名</summary>
+    public string spineFileName = string.Empty;
 
 
     // Start is called before the first frame update
@@ -21,6 +29,25 @@ public class MonsterActor : Actor
     void Update()
     {
         
+    }
+
+    public MonsterActor() { }
+    public MonsterActor(
+        int _id,
+        string _name,
+        List<int> _skillList,
+        string _spineFileName
+    ) {
+        this.id = _id;
+        this.monsterName = _name;
+        this.spineFileName = _spineFileName;
+
+        foreach (int item in _skillList)
+        {
+            MonsterSkillsData nowSkillData = MonsterSkillsData.dataList.Find(t => t.monsterSkill_Id == item);
+
+            this.skillList.Add(nowSkillData.CreateMe());
+        }
     }
 
     public new void ActionTodo()
