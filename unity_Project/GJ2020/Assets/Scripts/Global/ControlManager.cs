@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlManager : MonoSingleton<ControlManager>
 {
@@ -29,12 +30,19 @@ public class ControlManager : MonoSingleton<ControlManager>
     /// <summary>手牌列表</summary>
     public List<Card> cardList = new List<Card>();
 
+    public Transform cardListTransform;
+    private void Start()
+    {
+        cardListTransform = GameObject.Find("CardList").transform;
+        NextRound();
+    }
+
     /// <summary>
     /// 下一回合
     /// </summary>
     public void NextRound()
     {
-        if (this.monsterActor == null) this.CreateNewMonster();
+       // if (this.monsterActor == null) this.CreateNewMonster();
 
         if (this.playerActor != null && this.playerActor.roundRun)
         {
@@ -87,10 +95,12 @@ public class ControlManager : MonoSingleton<ControlManager>
     {
         if(this.playerActor.sanValue > 0)
         {
+            SceneManager.LoadScene("EndScene");
             // 游戏胜利 Good End
         }
         else
         {
+            SceneManager.LoadScene("EndScene");
             // 游戏失败 Bad End
         }
     }
@@ -113,6 +123,8 @@ public class ControlManager : MonoSingleton<ControlManager>
             }
 
             GameObject cardObject = Instantiate(this.cardPrefab);
+            cardObject.transform.SetParent(cardListTransform);
+
             Card card = cardObject.GetComponent<Card>();
             //Card card = cardObject.AddComponent<Card>();
             data.SettingData(card);
@@ -131,6 +143,8 @@ public class ControlManager : MonoSingleton<ControlManager>
                 }
 
                 GameObject cardObject = Instantiate(this.cardPrefab);
+                cardObject.transform.SetParent(cardListTransform);
+
                 Card card = cardObject.GetComponent<Card>();
                 //Card card = cardObject.AddComponent<Card>();
                 data.SettingData(card);
