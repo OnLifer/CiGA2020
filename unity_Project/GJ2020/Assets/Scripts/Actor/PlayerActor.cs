@@ -29,7 +29,7 @@ public class PlayerActor : Actor
         
     }
 
-    public new void ActionTodo()
+    public override void ActionTodo()
     {
         ControlManager.instance.CreateCardList();
     }
@@ -65,7 +65,7 @@ public class PlayerActor : Actor
 
         this.sanValue += _value;
 
-        this.sanChangeEvent(sanValue, oldSanValue);
+        if(this.sanChangeEvent != null && _value != 0) this.sanChangeEvent(sanValue, oldSanValue);
         if (this.sanValue <= 0) this.Death();
     }
 
@@ -87,7 +87,7 @@ public class PlayerActor : Actor
             this.staminaValue = 0;
         }
 
-        this.staminaChangeEvent(this.staminaValue, oldStaminaValue);
+        if(this.staminaChangeEvent!= null) this.staminaChangeEvent(this.staminaValue, oldStaminaValue);
 
         if (this.roundRun)
         {

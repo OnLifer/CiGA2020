@@ -65,7 +65,7 @@ public class Actor : MonoBehaviour
     /// <summary>
     /// 用于继承复写的具体行为
     /// </summary>
-    public void ActionTodo()
+    public virtual void ActionTodo()
     {
         // todo...
         this.EndMyRound();

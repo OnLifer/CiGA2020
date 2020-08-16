@@ -14,20 +14,8 @@ public class DataReader : MonoSingleton<DataReader>
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        //this.ReadMonsterData();
-        //this.ReadBackGrounpData();
-        //this.ReadCardsData();
-        //this.ReadBuffData();
-        //this.ReadMonsterSkillData();
-    }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     /// <summary>
     /// 一次加载所有数据

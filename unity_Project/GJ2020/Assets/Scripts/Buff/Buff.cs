@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class Buff
 {
@@ -178,7 +180,7 @@ public class Buff
     #region 各事件的公共方法与私有方法
     public void onCreated(Actor _actor)
     {
-        this.createdEvent(_actor);
+        if(this.createdEvent != null) this.createdEvent(_actor);
     }
     private void _onCreated(Actor _actor)
     {
@@ -191,7 +193,7 @@ public class Buff
     public void onRoundStart(Actor _actor)
     {
         this.roundRun = true;
-        if(this.roundRun) this.roundStartEvent(_actor);
+        if(this.roundRun && this.roundStartEvent != null) this.roundStartEvent(_actor);
     }
     private void _onRoundStart(Actor _actor)
     {
@@ -209,7 +211,7 @@ public class Buff
     /// </summary>
     public void onRoundEnd(Actor _actor)
     {
-        if (this.roundRun) this.roundEndEvent(_actor);
+        if (this.roundRun && this.roundEndEvent != null) this.roundEndEvent(_actor);
     }
     private void _onRoundEnd(Actor _actor)
     {
@@ -230,7 +232,7 @@ public class Buff
     /// </summary>
     public void onRemove(Actor _actor)
     {
-        this.removeEvent(_actor);
+        if(this.removeEvent != null) this.removeEvent(_actor);
     }
     private void _onRemove(Actor _actor)
     {
@@ -242,7 +244,7 @@ public class Buff
     /// </summary>
     public void onExpired(Actor _actor)
     {
-        this.expiredEvent(_actor);
+        if(this.expiredEvent != null) this.expiredEvent(_actor);
     }
     private void _onExpired(Actor _actor)
     {
@@ -256,7 +258,7 @@ public class Buff
     /// <param name="_value">需要处理的数值</param>
     public void OnSanChange(Actor _actor, ref int _value)
     {
-        this.sanChangeEvent(_actor, ref _value);
+        if(this.sanChangeEvent != null) this.sanChangeEvent(_actor, ref _value);
     }
     private void _onSanChange(Actor _actor, ref int _value)
     {
@@ -270,7 +272,7 @@ public class Buff
     /// <param name="_value">需要处理的数值</param>
     public void OnStaminaChange(Actor _actor, ref int _value)
     {
-        this.staminaChangeEvent(_actor, ref _value);
+        if(this.staminaChangeEvent != null) this.staminaChangeEvent(_actor, ref _value);
     }
     private void _onStaminaChange(Actor _actor, ref int _value)
     {
@@ -312,6 +314,7 @@ public class Buff
     /// <param name="_actor"></param>
     public void ChangePlayerActorValue(Actor _actor)
     {
+        Debug.LogWarning("[Buff SanValue]" + this.sanValue);
         ControlManager.instance.playerActor.SanChange(this.sanValue);
         ControlManager.instance.playerActor.StaminaChange(this.staminaValue);
     }

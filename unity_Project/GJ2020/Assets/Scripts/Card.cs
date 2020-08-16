@@ -4,12 +4,14 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IPointerClickHandler
 {
     #region Inspector
     public Image image = null;
+    public Text text = null;
 
     #endregion
 
@@ -126,8 +128,18 @@ public class Card : MonoBehaviour
         this.changeCardId = _changeCardId;
         this.imageFileName = _imageFileName;
 
+        if (this.text != null) this.text.text = this.cardName;
+
         this.listId = ControlManager.instance.cardList.Count();
         ControlManager.instance.cardList.Add(this);
+    }
+
+
+    void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+    {
+        this.OnCardClick();
+
+        //throw new System.NotImplementedException();
     }
 
     /// <summary>
@@ -144,9 +156,13 @@ public class Card : MonoBehaviour
     /// <returns>体力是否足够消耗</returns>
     public bool CheckPlayerStamina()
     {
-        bool canChange = ControlManager.instance.playerActor.CheckStaminaChange(this.staminaValue, out int outValue);
+        bool canChange = ControlManager.instance.playerActor.CheckStaminaChange(-this.staminaValue, out int outValue);
         // 判断是否足够变化 可以的话将值修改为新值
-        if(canChange) ControlManager.instance.playerActor.staminaValue = outValue;
+        if (canChange)
+        {
+            Debug.Log("[UserCard Stamina]" + ControlManager.instance.playerActor.staminaValue + " : " + outValue + " : " + this.staminaValue);
+            ControlManager.instance.playerActor.staminaValue = outValue;
+        }
         return canChange;
     }
 
@@ -163,8 +179,10 @@ public class Card : MonoBehaviour
             return;
         }
 
+
+
         // 调用事件
-        this.useCardEvent();
+        if(this.useCardEvent != null) this.useCardEvent();
 
         Actor target = this.subjectTo == Enum.SubjectToEnum.enemy ? ControlManager.instance.monsterActor as Actor : ControlManager.instance.playerActor as Actor;
 
@@ -198,7 +216,8 @@ public class Card : MonoBehaviour
         //ControlManager.instance.cardList[index] = 
         //ControlManager.instance.cardList.Remove(this);
         // 调用事件
-        this.changeCardEvent(_cardId);
+
+        if(this.changeCardEvent != null) this.changeCardEvent(_cardId);
     }
 
     /// <summary>
@@ -211,4 +230,6 @@ public class Card : MonoBehaviour
         // 现在是直接销毁对像
         Destroy(this.gameObject);
     }
+
+    
 }

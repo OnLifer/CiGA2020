@@ -34,6 +34,7 @@ public class ControlManager : MonoSingleton<ControlManager>
     private void Start()
     {
         cardListTransform = GameObject.Find("CardList").transform;
+        this.monsterActor = null;
         NextRound();
     }
 
@@ -42,7 +43,7 @@ public class ControlManager : MonoSingleton<ControlManager>
     /// </summary>
     public void NextRound()
     {
-       // if (this.monsterActor == null) this.CreateNewMonster();
+        if (this.monsterActor == null) this.CreateNewMonster();
 
         if (this.playerActor != null && this.playerActor.roundRun)
         {
@@ -84,6 +85,8 @@ public class ControlManager : MonoSingleton<ControlManager>
 
         this.monsterActor = monster;
 
+        Debug.Log("[New Monster]" + monster.name);
+
         // 创建怪物预制体并添加 MonsterActor
         // todo...
     }
@@ -112,7 +115,7 @@ public class ControlManager : MonoSingleton<ControlManager>
         if (this.cardPrefab == null) return;
 
         // 手牌总数不足则补充
-        while (this.cardList.Count < GlobalManager.cardCount - 1)
+        while (this.cardList.Count < GlobalManager.cardCount)
         {
             //Card card = CardsData.CreateRandomCard();
             CardsData data = CardsData.GetRandomData();
@@ -128,7 +131,7 @@ public class ControlManager : MonoSingleton<ControlManager>
             Card card = cardObject.GetComponent<Card>();
             //Card card = cardObject.AddComponent<Card>();
             data.SettingData(card);
-            this.cardList.Add(card);
+            //this.cardList.Add(card);
         }
 
         for (int i = 0; i < this.cardList.Count; i++)

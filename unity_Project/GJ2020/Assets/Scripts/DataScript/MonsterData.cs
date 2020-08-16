@@ -51,6 +51,16 @@ public class MonsterData
         MonsterData.dataList.Add(this);
     }
 
+    public void SettingData(MonsterActor _actorComponent)
+    {
+        _actorComponent.SettingData(
+            this.monster_ID,
+            this.monster_Name,
+            this.monsterskillid_Array,
+            this.spineAnime_Name
+        );
+    }
+
     public MonsterActor CreateMe()
     {
         MonsterActor monsterActor = new MonsterActor(

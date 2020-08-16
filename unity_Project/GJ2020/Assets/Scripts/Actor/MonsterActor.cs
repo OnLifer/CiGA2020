@@ -50,6 +50,25 @@ public class MonsterActor : Actor
         }
     }
 
+    public void SettingData(
+        int _id,
+        string _name,
+        List<int> _skillList,
+        string _spineFileName
+    )
+    {
+        this.id = _id;
+        this.monsterName = _name;
+        this.spineFileName = _spineFileName;
+
+        foreach (int item in _skillList)
+        {
+            MonsterSkillsData nowSkillData = MonsterSkillsData.dataList.Find(t => t.monsterSkill_Id == item);
+
+            this.skillList.Add(nowSkillData.CreateMe());
+        }
+    }
+
     public new void EndMyRound()
     {
         this.roundNum--;
@@ -62,7 +81,7 @@ public class MonsterActor : Actor
         this.OnRoundEnd();
     }
 
-    public new void ActionTodo()
+    public override void ActionTodo()
     {
         if(this.skillList.Count > 0)
         {

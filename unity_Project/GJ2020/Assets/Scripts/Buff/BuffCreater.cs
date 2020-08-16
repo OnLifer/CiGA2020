@@ -28,7 +28,7 @@ public class BuffCreater : MonoBehaviour
             }
         }
 
-        Debug.LogError("Can't find the Buff in [BuffDataList]");
+        Debug.LogWarning("Can't find the Buff in [BuffDataList]");
         return null;
     }
 
