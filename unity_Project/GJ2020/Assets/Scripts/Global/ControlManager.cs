@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class ControlManager :MonoSingleton<ControlManager>
 {
+    /// <summary>当前回合数</summary>
     public int roundCount = 0;
+
+    /// <summary>当前怪物序号</summary>
+    public int nowMonsterIndex = 0;
+
+    /// <summary>玩家演员</summary>
     public PlayerActor playerActor = null;
+    /// <summary>怪物演员</summary>
     public MonsterActor monsterActor = null;
 
+    /// <summary>手牌列表</summary>
     public List<Card> cardList = new List<Card>();
 
     /// <summary>
@@ -34,7 +42,11 @@ public class ControlManager :MonoSingleton<ControlManager>
         this.monsterActor.roundRun = true;
     }
 
-
+    public void CreateNewMonster()
+    {
+        this.nowMonsterIndex++;
+        //LevelData.monsterList
+    }
 
     public void OnCardClick()
     {

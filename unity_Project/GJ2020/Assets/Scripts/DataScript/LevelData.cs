@@ -12,4 +12,12 @@ public class LevelData
     /// </summary>
     public static Dictionary<int, int> monsterList = new Dictionary<int, int>();
     //public static List<int> monsterList = null;
+
+    //public static MonsterActor(int _id)
+    //{
+    //    foreach (var item in collection)
+    //    {
+
+    //    }
+    //}
 }
