@@ -1,0 +1,34 @@
+
+mayi01.png
+size: 291,157
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shenti
+  rotate: false
+  xy: 2, 2
+  size: 287, 108
+  orig: 287, 108
+  offset: 0, 0
+  index: -1
+tui01
+  rotate: true
+  xy: 2, 119
+  size: 36, 81
+  orig: 38, 84
+  offset: 1, 2
+  index: -1
+tui02
+  rotate: true
+  xy: 174, 112
+  size: 43, 94
+  orig: 43, 94
+  offset: 0, 0
+  index: -1
+tui03
+  rotate: true
+  xy: 85, 118
+  size: 37, 87
+  orig: 37, 87
+  offset: 0, 0
+  index: -1
