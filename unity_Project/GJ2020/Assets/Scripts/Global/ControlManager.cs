@@ -113,7 +113,8 @@ public class ControlManager : MonoSingleton<ControlManager>
             }
 
             GameObject cardObject = Instantiate(this.cardPrefab);
-            Card card = cardObject.AddComponent<Card>();
+            Card card = cardObject.GetComponent<Card>();
+            //Card card = cardObject.AddComponent<Card>();
             data.SettingData(card);
             this.cardList.Add(card);
         }
@@ -130,7 +131,8 @@ public class ControlManager : MonoSingleton<ControlManager>
                 }
 
                 GameObject cardObject = Instantiate(this.cardPrefab);
-                Card card = cardObject.AddComponent<Card>();
+                Card card = cardObject.GetComponent<Card>();
+                //Card card = cardObject.AddComponent<Card>();
                 data.SettingData(card);
                 this.cardList[i] = card;
             }
