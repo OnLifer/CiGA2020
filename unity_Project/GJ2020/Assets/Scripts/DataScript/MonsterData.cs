@@ -61,17 +61,17 @@ public class MonsterData
         );
     }
 
-    public MonsterActor CreateMe()
-    {
-        MonsterActor monsterActor = new MonsterActor(
-            this.monster_ID,
-            this.monster_Name,
-            this.monsterskillid_Array,
-            this.spineAnime_Name
-        );
+    //public MonsterActor CreateMe()
+    //{
+    //    MonsterActor monsterActor = new MonsterActor(
+    //        this.monster_ID,
+    //        this.monster_Name,
+    //        this.monsterskillid_Array,
+    //        this.spineAnime_Name
+    //    );
 
-        return monsterActor;
-    }
+    //    return monsterActor;
+    //}
 
     public string ShowString()
     {

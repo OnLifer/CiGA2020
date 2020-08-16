@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ControlManager : MonoSingleton<ControlManager>
 {
@@ -11,7 +12,12 @@ public class ControlManager : MonoSingleton<ControlManager>
 
     [Space()]
     public GameObject cardPrefab = null;
+    public GameObject monsterPrefab = null;
 
+    [Header("UI")]
+    public Text sanText = null;
+    public Text staText = null;
+    public Text roundText = null;
     #endregion
 
     [HideInInspector]
@@ -36,17 +42,52 @@ public class ControlManager : MonoSingleton<ControlManager>
         cardListTransform = GameObject.Find("CardList").transform;
         this.monsterActor = null;
         NextRound();
+        this.UIBindToEvent();
     }
 
+    #region 图方便的UI绑定
+    private void UIBindToEvent()
+    {
+        if(this.sanText != null)
+        {
+            this.sanText.text = "San: " + this.playerActor.sanValue;
+            this.playerActor.sanChangeEvent += this.SanTextChange;
+        }
+        if (this.staText!= null)
+        {
+            this.staText.text = "Sta: " + this.playerActor.staminaValue;
+            this.playerActor.staminaChangeEvent += this.StaTextChange;
+        }
+
+        if (this.roundText) this.roundText.text = "Round: " + (this.roundCount + 1);
+    }
+
+    private void SanTextChange(int _value, int _oldValue)
+    {
+        this.sanText.text = "San: " + _value;
+    }
+    private void StaTextChange(int _value, int _oldValue)
+    {
+        this.staText.text = "Sta: " + _value;
+    }
+    private void RoundTextChange(int _value)
+    {
+        if(this.roundText) this.roundText.text = "Round: " + (_value+1);
+    }
+    #endregion
     /// <summary>
     /// 下一回合
     /// </summary>
     public void NextRound()
     {
-        if (this.monsterActor == null) this.CreateNewMonster();
+        Debug.LogWarning("[NextRound]");
+
+        
 
         if (this.playerActor != null && this.playerActor.roundRun)
         {
+            //this.playerActor.staminaValue = GlobalManager.fatigueValues;
+            this.playerActor.staminaValue = 5;
             this.playerActor.Action();
             return;
         }
@@ -58,10 +99,23 @@ public class ControlManager : MonoSingleton<ControlManager>
         }
 
         this.roundCount++;
+        this.RoundTextChange(this.roundCount);
         Debug.Log("[Next Round] " + this.roundCount);
+
+        if (this.monsterActor == null) this.CreateNewMonster();
 
         this.playerActor.roundRun = true;
         this.monsterActor.roundRun = true;
+
+    }
+
+    /// <summary>
+    /// 用户手动下一回合
+    /// </summary>
+    public void UserNextRound()
+    {
+        this.playerActor.roundRun = false;
+        this.NextRound();
     }
 
     /// <summary>
@@ -69,9 +123,12 @@ public class ControlManager : MonoSingleton<ControlManager>
     /// </summary>
     public void CreateNewMonster()
     {
+        if (this.monsterPrefab == null) return;
 
+
+        MonsterData monsterData = null;
         MonsterActor monster = null;
-        while(monster == null)
+        while(monsterData == null)
         {
             this.nowMonsterIndex++;
             if(this.nowMonsterIndex > LevelData.monsterList.Count)
@@ -80,12 +137,19 @@ public class ControlManager : MonoSingleton<ControlManager>
                 return;
             }
 
-            monster = LevelData.CreateMonsterActor(this.nowMonsterIndex);
+            //monsterData = LevelData.CreateMonsterActor(this.nowMonsterIndex);
+            monsterData = LevelData.FindMonsterDataByIndex(this.nowMonsterIndex);
         }
 
-        this.monsterActor = monster;
 
-        Debug.Log("[New Monster]" + monster.name);
+        GameObject monsterObject = Instantiate(this.monsterPrefab);
+
+        MonsterActor actor = monsterObject.GetComponent<MonsterActor>();
+        monsterData.SettingData(actor);
+
+        this.monsterActor = actor;
+
+        Debug.Log("[New Monster]" + actor.monsterName);
 
         // 创建怪物预制体并添加 MonsterActor
         // todo...
@@ -155,6 +219,25 @@ public class ControlManager : MonoSingleton<ControlManager>
             }
         }
 
+    }
+
+    /// <summary>
+    /// 创建卡牌
+    /// </summary>
+    /// <param name="_data"></param>
+    /// <returns></returns>
+    public Card CreateCard(CardsData _data)
+    {
+        if (this.cardPrefab == null) return null;
+        GameObject cardObject = Instantiate(this.cardPrefab);
+        cardObject.transform.SetParent(cardListTransform);
+
+        Card card = cardObject.GetComponent<Card>();
+        //Card card = cardObject.AddComponent<Card>();
+        _data.SettingData(card);
+
+        return card;
+        //this.cardList[i] = card;
     }
 
     public void OnCardClick()

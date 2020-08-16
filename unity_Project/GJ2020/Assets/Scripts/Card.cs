@@ -68,31 +68,31 @@ public class Card : MonoBehaviour, IPointerClickHandler
     /// <summary>卡片变化事件</summary>
     public event ValueToHandler changeCardEvent;
 
-    public Card() { }
-    public Card(
-        int _id,
-        string _name,
-        int _staminaValue,
-        int _sanValue,
-        int _buffId,
-        Enum.SubjectToEnum _subjectTo,
-        int _changeMonsterId,
-        int _changeCardId,
-        string _imageFileName
-    ) {
-        this.id = _id;
-        this.cardName = _name;
-        this.staminaValue = _staminaValue;
-        this.sanValue = _sanValue;
-        this.buffId = _buffId;
-        this.subjectTo = _subjectTo;
-        this.changeMonsterId = _changeMonsterId;
-        this.changeCardId = _changeCardId;
-        this.imageFileName = _imageFileName;
+    //public Card() { }
+    //public Card(
+    //    int _id,
+    //    string _name,
+    //    int _staminaValue,
+    //    int _sanValue,
+    //    int _buffId,
+    //    Enum.SubjectToEnum _subjectTo,
+    //    int _changeMonsterId,
+    //    int _changeCardId,
+    //    string _imageFileName
+    //) {
+    //    this.id = _id;
+    //    this.cardName = _name;
+    //    this.staminaValue = _staminaValue;
+    //    this.sanValue = _sanValue;
+    //    this.buffId = _buffId;
+    //    this.subjectTo = _subjectTo;
+    //    this.changeMonsterId = _changeMonsterId;
+    //    this.changeCardId = _changeCardId;
+    //    this.imageFileName = _imageFileName;
 
-        this.listId = ControlManager.instance.cardList.Count();
-        ControlManager.instance.cardList.Add(this);
-    }
+    //    this.listId = ControlManager.instance.cardList.Count();
+    //    ControlManager.instance.cardList.Add(this);
+    //}
 
     /// <summary>
     /// 写入值
@@ -161,7 +161,8 @@ public class Card : MonoBehaviour, IPointerClickHandler
         if (canChange)
         {
             Debug.Log("[UserCard Stamina]" + ControlManager.instance.playerActor.staminaValue + " : " + outValue + " : " + this.staminaValue);
-            ControlManager.instance.playerActor.staminaValue = outValue;
+            //ControlManager.instance.playerActor.staminaValue = outValue;
+            ControlManager.instance.playerActor.StaminaChange(-this.staminaValue);
         }
         return canChange;
     }
@@ -210,7 +211,8 @@ public class Card : MonoBehaviour, IPointerClickHandler
         int index = ControlManager.instance.cardList.FindIndex(t => t.id == this.id);
 
         CardsData cardsData = CardsData.dataList.Find(t => t.card_ID == _cardId);
-        Card newCard = cardsData.CreateMe();
+        //Card newCard = cardsData.CreateMe();
+        Card newCard = ControlManager.instance.CreateCard(cardsData);
 
         ControlManager.instance.cardList[index] = newCard;
         //ControlManager.instance.cardList[index] = 

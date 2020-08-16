@@ -65,16 +65,20 @@ public class MonsterActor : Actor
         {
             MonsterSkillsData nowSkillData = MonsterSkillsData.dataList.Find(t => t.monsterSkill_Id == item);
 
-            this.skillList.Add(nowSkillData.CreateMe());
+            if(nowSkillData != null) this.skillList.Add(nowSkillData.CreateMe());
         }
     }
 
-    public new void EndMyRound()
+    public override void OnRoundStart()
+    {
+        base.OnRoundStart();
+    }
+    public override void EndMyRound()
     {
         this.roundNum--;
         if(this.roundNum <= 0)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             ControlManager.instance.monsterActor = null;
             return;
         }
@@ -88,5 +92,7 @@ public class MonsterActor : Actor
             int skillIndex = Random.Range(0, this.skillList.Count);
             this.skillList[skillIndex].UseSkill(ControlManager.instance.playerActor, ControlManager.instance.monsterActor);
         }
+
+        this.EndMyRound();
     }
 }

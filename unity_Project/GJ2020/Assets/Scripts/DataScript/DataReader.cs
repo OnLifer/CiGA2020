@@ -39,7 +39,7 @@ public class DataReader : MonoSingleton<DataReader>
     /// </summary>
     public void ReadMonsterData()
     {
-        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/monster_Library.json");//读取数据，转换成数据流
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAssets/JsonConfig/monster_Library.json");//读取数据，转换成数据流
         string jsonStr = streamreader.ReadToEnd();
         List<MonsterData> data = JsonConvert.DeserializeObject<List<MonsterData>>(jsonStr);
 
@@ -56,7 +56,7 @@ public class DataReader : MonoSingleton<DataReader>
     /// </summary>
     public void ReadMonsterSkillData()
     {
-        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/monsterskill_Library.json");//读取数据，转换成数据流
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAssets/JsonConfig/monsterskill_Library.json");//读取数据，转换成数据流
         string jsonStr = streamreader.ReadToEnd();
         List<MonsterSkillsData> data = JsonConvert.DeserializeObject<List<MonsterSkillsData>>(jsonStr);
 
@@ -71,7 +71,7 @@ public class DataReader : MonoSingleton<DataReader>
     /// </summary>
     //public void ReadLevelData()
     //{
-    //    StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/LevelData.json");//读取数据，转换成数据流
+    //    StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAssets/LevelData.json");//读取数据，转换成数据流
     //    string jsonStr = streamreader.ReadToEnd();
     //    //LevelData data = JsonConvert.DeserializeObject<LevelData>(jsonStr);
     //    List<int> data = JsonConvert.DeserializeObject<List<int>>(jsonStr);
@@ -83,7 +83,7 @@ public class DataReader : MonoSingleton<DataReader>
     /// </summary>
     public void ReadBuffData()
     {
-        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/condition_Library.json");//读取数据，转换成数据流
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAssets/JsonConfig/condition_Library.json");//读取数据，转换成数据流
         string jsonStr = streamreader.ReadToEnd();
         List<BuffData> data = JsonConvert.DeserializeObject<List<BuffData>>(jsonStr);
 
@@ -98,7 +98,7 @@ public class DataReader : MonoSingleton<DataReader>
     /// </summary>
     public void ReadCardsData()
     {
-        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/card_Library.json");//读取数据，转换成数据流
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAssets/JsonConfig/card_Library.json");//读取数据，转换成数据流
         string jsonStr = streamreader.ReadToEnd();
         List<CardsData> data = JsonConvert.DeserializeObject<List<CardsData>>(jsonStr);
 
@@ -113,7 +113,7 @@ public class DataReader : MonoSingleton<DataReader>
     /// </summary>
     public void ReadBackGrounpData()
     {
-        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/background_Library.json");//读取数据，转换成数据流
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAssets/JsonConfig/background_Library.json");//读取数据，转换成数据流
         string jsonStr = streamreader.ReadToEnd();
         List<BackgroundData> data = JsonConvert.DeserializeObject<List<BackgroundData>>(jsonStr);
 

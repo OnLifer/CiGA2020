@@ -65,5 +65,7 @@ public class MonsterSkill
         {
             BuffCreater.AddBuffToActor(target, this.buffId);
         }
+
+        Debug.Log("[Monster Attck]");
     }
 }

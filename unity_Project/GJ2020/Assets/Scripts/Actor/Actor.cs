@@ -74,7 +74,7 @@ public class Actor : MonoBehaviour
     /// <summary>
     /// 结束我的回合
     /// </summary>
-    public void EndMyRound()
+    public virtual void EndMyRound()
     {
         this.OnRoundEnd();
     }
@@ -121,7 +121,7 @@ public class Actor : MonoBehaviour
     /// <summary>
     /// 回合开始时调用
     /// </summary>
-    public void OnRoundStart()
+    public virtual void OnRoundStart()
     {
 
         foreach (Buff item in this.buffList)
@@ -133,8 +133,9 @@ public class Actor : MonoBehaviour
     /// <summary>
     /// 回合结束时调用
     /// </summary>
-    public void OnRoundEnd()
+    public virtual void OnRoundEnd()
     {
+        this.roundRun = false;
 
         foreach (Buff item in this.buffList)
         {
@@ -148,7 +149,6 @@ public class Actor : MonoBehaviour
         }
 
         this.removeBuffList.Clear();
-        this.roundRun = false;
         ControlManager.instance.NextRound();
     }
 

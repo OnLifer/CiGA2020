@@ -34,9 +34,10 @@ public class PlayerActor : Actor
         ControlManager.instance.CreateCardList();
     }
 
-    public new void OnRoundStart()
+    public override void OnRoundStart()
     {
         this.staminaValue = GlobalManager.fatigueValues;
+        Debug.LogWarning("[StaminaInif]" + this.staminaValue);
         base.OnRoundStart();
     }
 
@@ -55,6 +56,7 @@ public class PlayerActor : Actor
     /// <param name="_value">变动的数值</param>
     public void SanChange(int _value)
     {
+        if (_value == 0) return;
         int oldSanValue = this.sanValue;
 
         foreach (var item in buffList)
@@ -75,6 +77,8 @@ public class PlayerActor : Actor
     /// <param name="_value">变动的数值</param>
     public void StaminaChange(int _value)
     {
+        if (_value == 0) return;
+
         int oldStaminaValue = this.staminaValue;
 
         int newStamina;
@@ -89,7 +93,7 @@ public class PlayerActor : Actor
 
         if(this.staminaChangeEvent!= null) this.staminaChangeEvent(this.staminaValue, oldStaminaValue);
 
-        if (this.roundRun)
+        if (this.staminaValue <= 0 && this.roundRun)
         {
             this.EndMyRound();
         }
