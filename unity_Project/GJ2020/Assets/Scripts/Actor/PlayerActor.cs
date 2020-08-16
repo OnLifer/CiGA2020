@@ -12,7 +12,7 @@ public class PlayerActor : Actor
     /// <summary>
     /// 体力值
     /// </summary>
-    public int staminaValue = 5;
+    public int staminaValue = GlobalManager.fatigueValues;
 
     public event ValueChangeHandler sanChangeEvent;
     public event ValueChangeHandler staminaChangeEvent;
@@ -27,6 +27,17 @@ public class PlayerActor : Actor
     void Update()
     {
         
+    }
+
+    public new void ActionTodo()
+    {
+        ControlManager.instance.CreateCardList();
+    }
+
+    public new void OnRoundStart()
+    {
+        this.staminaValue = GlobalManager.fatigueValues;
+        base.OnRoundStart();
     }
 
     /// <summary>
@@ -77,6 +88,11 @@ public class PlayerActor : Actor
         }
 
         this.staminaChangeEvent(this.staminaValue, oldStaminaValue);
+
+        if (this.roundRun)
+        {
+            this.EndMyRound();
+        }
     }
 
     /// <summary>
@@ -106,5 +122,7 @@ public class PlayerActor : Actor
     public new void Death()
     {
         Debug.Log("啊 我屎了");
+
+        ControlManager.instance.GameOver();
     }
 }

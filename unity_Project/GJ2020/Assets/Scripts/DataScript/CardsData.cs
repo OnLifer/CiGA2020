@@ -49,6 +49,21 @@ public class CardsData
         CardsData.dataList.Add(this);
     }
 
+    public void SettingData(Card _cardComponent)
+    {
+        _cardComponent.SettingData(
+            this.card_ID,
+            this.card_Name,
+            this.energy_Take,
+            this.san_Change,
+            this.forceCondition_Id,
+            this.force_Object,
+            this.monster_Id,
+            this.exCard_ID,
+            this.png_Name
+        );
+    }
+
     public Card CreateMe()
     {
         Card newCard = new Card(
@@ -64,6 +79,28 @@ public class CardsData
         );
 
         return newCard;
+    }
+
+    public static CardsData GetRandomData()
+    {
+        if (CardsData.dataList.Count > 0)
+        {
+            int index = Random.Range(0, CardsData.dataList.Count);
+            return CardsData.dataList[index];
+        }
+
+        return null;
+    }
+
+    public static Card CreateRandomCard()
+    {
+        if (CardsData.dataList.Count > 0)
+        {
+            int index = Random.Range(0, CardsData.dataList.Count);
+            return CardsData.dataList[index].CreateMe();
+        }
+
+        return null;
     }
 
     public string ShowString()

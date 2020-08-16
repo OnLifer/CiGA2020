@@ -20,6 +20,10 @@ public class Card : MonoBehaviour
     //[Header("由创建器创建的属性 回头可能private掉")]
     [HideInInspector]
     /// <summary>id</summary>
+    public int listId = -1;
+
+    [HideInInspector]
+    /// <summary>id</summary>
     public int id = -1;
 
     [HideInInspector]
@@ -83,6 +87,47 @@ public class Card : MonoBehaviour
         this.changeMonsterId = _changeMonsterId;
         this.changeCardId = _changeCardId;
         this.imageFileName = _imageFileName;
+
+        this.listId = ControlManager.instance.cardList.Count();
+        ControlManager.instance.cardList.Add(this);
+    }
+
+    /// <summary>
+    /// 写入值
+    /// </summary>
+    /// <param name="_id"></param>
+    /// <param name="_name"></param>
+    /// <param name="_staminaValue"></param>
+    /// <param name="_sanValue"></param>
+    /// <param name="_buffId"></param>
+    /// <param name="_subjectTo"></param>
+    /// <param name="_changeMonsterId"></param>
+    /// <param name="_changeCardId"></param>
+    /// <param name="_imageFileName"></param>
+    public void SettingData(
+        int _id,
+        string _name,
+        int _staminaValue,
+        int _sanValue,
+        int _buffId,
+        Enum.SubjectToEnum _subjectTo,
+        int _changeMonsterId,
+        int _changeCardId,
+        string _imageFileName
+    )
+    {
+        this.id = _id;
+        this.cardName = _name;
+        this.staminaValue = _staminaValue;
+        this.sanValue = _sanValue;
+        this.buffId = _buffId;
+        this.subjectTo = _subjectTo;
+        this.changeMonsterId = _changeMonsterId;
+        this.changeCardId = _changeCardId;
+        this.imageFileName = _imageFileName;
+
+        this.listId = ControlManager.instance.cardList.Count();
+        ControlManager.instance.cardList.Add(this);
     }
 
     /// <summary>
@@ -161,6 +206,8 @@ public class Card : MonoBehaviour
     /// </summary>
     public void RemoveCard()
     {
+        //ControlManager.instance.cardList.FindIndex(this);
+        ControlManager.instance.cardList[this.listId] = null;
         // 现在是直接销毁对像
         Destroy(this.gameObject);
     }

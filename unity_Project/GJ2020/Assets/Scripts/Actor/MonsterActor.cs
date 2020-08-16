@@ -50,6 +50,18 @@ public class MonsterActor : Actor
         }
     }
 
+    public new void EndMyRound()
+    {
+        this.roundNum--;
+        if(this.roundNum <= 0)
+        {
+            Destroy(this);
+            ControlManager.instance.monsterActor = null;
+            return;
+        }
+        this.OnRoundEnd();
+    }
+
     public new void ActionTodo()
     {
         if(this.skillList.Count > 0)

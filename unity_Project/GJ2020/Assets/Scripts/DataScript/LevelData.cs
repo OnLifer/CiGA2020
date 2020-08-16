@@ -13,11 +13,20 @@ public class LevelData
     public static Dictionary<int, int> monsterList = new Dictionary<int, int>();
     //public static List<int> monsterList = null;
 
-    //public static MonsterActor(int _id)
-    //{
-    //    foreach (var item in collection)
-    //    {
+    /// <summary>
+    /// 根据索引创建MonsterActor
+    /// </summary>
+    /// <param name="_index">索引</param>
+    /// <returns>创建好的MonsterActor 或者null</returns>
+    public static MonsterActor CreateMonsterActor(int _index)
+    {
+        if (LevelData.monsterList.ContainsKey(_index))
+        {
+            int monsterId = LevelData.monsterList[_index];
+            MonsterData data = MonsterData.dataList.Find(t => t.monster_ID == monsterId);
+            return data.CreateMe();
+        }
 
-    //    }
-    //}
+        return null;
+    }
 }
