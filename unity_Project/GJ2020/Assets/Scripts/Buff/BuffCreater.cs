@@ -20,9 +20,10 @@ public class BuffCreater : MonoBehaviour
     {
         foreach (BuffData item in BuffData.dataList)
         {
-            if(item.id == _buffId)
+            if(item.condition_ID == _buffId)
             {
-                Buff buff = new Buff(item);
+                Buff buff = item.CreateMe();
+                //Buff buff = new Buff(item);
                 return buff;
             }
         }

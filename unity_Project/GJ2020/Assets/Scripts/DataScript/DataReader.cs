@@ -11,8 +11,10 @@ public class DataReader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.ReadMonsterData();
-        this.ReadBackGrounpData();
+        //this.ReadMonsterData();
+        //this.ReadBackGrounpData();
+        //this.ReadCardsData();
+        this.ReadBuffData();
     }
 
     // Update is called once per frame
@@ -78,9 +80,14 @@ public class DataReader : MonoBehaviour
     /// </summary>
     public void ReadBuffData()
     {
-        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/LevelData.json");//读取数据，转换成数据流
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/condition_Library.json");//读取数据，转换成数据流
         string jsonStr = streamreader.ReadToEnd();
-        BuffData data = JsonConvert.DeserializeObject<BuffData>(jsonStr);
+        List<BuffData> data = JsonConvert.DeserializeObject<List<BuffData>>(jsonStr);
+
+        foreach (BuffData item in data)
+        {
+            Debug.Log(item.ShowString());
+        }
     }
 
     /// <summary>
@@ -88,7 +95,14 @@ public class DataReader : MonoBehaviour
     /// </summary>
     public void ReadCardsData()
     {
+        StreamReader streamreader = new StreamReader(Application.dataPath + "/StreamingAsset/JsonConfig/card_Library.json");//读取数据，转换成数据流
+        string jsonStr = streamreader.ReadToEnd();
+        List<CardsData> data = JsonConvert.DeserializeObject<List<CardsData>>(jsonStr);
 
+        foreach (CardsData item in data)
+        {
+            Debug.Log(item.ShowString());
+        }
     }
 
     /// <summary>

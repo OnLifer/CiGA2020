@@ -146,7 +146,7 @@ public class Card : MonoBehaviour
     {
         int index = ControlManager.instance.cardList.FindIndex(t => t.id == this.id);
 
-        CardsData cardsData = CardsData.dataList.Find(t => t.id == _cardId);
+        CardsData cardsData = CardsData.dataList.Find(t => t.card_ID == _cardId);
         Card newCard = cardsData.CreateMe();
 
         ControlManager.instance.cardList[index] = newCard;

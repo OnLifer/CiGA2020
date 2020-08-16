@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Buff
-{ 
+{
+    public bool roundRun = true;
+
     /// <summary> 状态ID </summary>
     public int id = -1;
     /// <summary> 状态名 </summary>
     public string name = string.Empty;
     /// <summary>回合数 </summary>
     public int roundNum = 1;
+
+    /// <summary>丧值</summary>
+    public int sanValue = 0;
+
+    /// <summary>消耗体力值</summary>
+    public int staminaValue = 0;
+
     /// <summary>依附的ACT</summary>
     public Actor owner;
 
     public enum BuffType
     {
-        Buff, DeBuff
+        buff, deBuff
     }
     /// <summary> buff类型</summary>
-    public BuffType type = BuffType.Buff;
+    public BuffType type = BuffType.buff;
 
     /// <summary>
     /// 执行状态枚举
@@ -38,6 +47,9 @@ public class Buff
 
     /// <summary> Spine Asset 文件名 </summary>
     public string spineFileName = string.Empty;
+
+    /// <summary> 图片文件名 </summary>
+    public string imageFileName = string.Empty;
 
     #region 事件属性
     /// <summary>
@@ -83,14 +95,68 @@ public class Buff
         this.SelfEventBind();
     }
 
+    public Buff(
+        int _id,
+        string _name,
+        Buff.BuffType _type,
+        int _roundNum,
+        bool _bool_Now,
+        bool _bool_EveryRound,
+        int _energy_ChangeVal,
+        int _san_ChangeVal,
+        PerformBuffName _performBuff,
+        string _spineFileName,
+        string _imageFileName
+    )
+    {
+        this.id = _id;
+        this.name = _name;
+        this.type = _type;
+        this.roundNum = _roundNum;
+        this.performBuff = _performBuff;
+        this.spineFileName = _spineFileName;
+        this.imageFileName = _imageFileName;
+
+        this.staminaValue = _energy_ChangeVal;
+        this.sanValue = _san_ChangeVal;
+
+        if (_bool_Now) this.createdEvent += this.ChangePlayerActorValueOnce;
+        if (_bool_EveryRound)
+        {
+            this.roundEndEvent += this.ChangePlayerActorValue;
+        }
+        else
+        {
+            this.expiredEvent += this.ChangePlayerActorValue;
+        }
+
+        switch (_performBuff)
+        {
+            case PerformBuffName.stop_Round:
+                this.roundStartEvent += this.PerformStopRound;
+                break;
+            case PerformBuffName.effect_Halved:
+                this.sanChangeEvent += this.PerformEffectHalved;
+                this.staminaChangeEvent += this.PerformEffectHalved;
+                break;
+            case PerformBuffName.doubling_Effect:
+                this.sanChangeEvent += this.PerformDoublingEffect;
+                this.staminaChangeEvent += this.PerformDoublingEffect;
+                break;
+            case PerformBuffName.none:
+            default:
+                break;
+        }
+    }
+
     public void SettingUseBuffData(BuffData _buffData)
     {
-        this.id = _buffData.id;
-        this.name = _buffData.name;
-        this.type = _buffData.type;
-        this.roundNum = _buffData.roundNum;
-        this.performBuff = _buffData.performBuffName;
-        this.spineFileName = _buffData.spineFileName;
+        //this.id = _buffData.id;
+        //this.name = _buffData.name;
+        //this.type = _buffData.type;
+        //this.roundNum = _buffData.roundNum;
+        //this.performBuff = _buffData.performBuffName;
+        //this.spineFileName = _buffData.spineFileName;
     }
 
 
@@ -124,7 +190,8 @@ public class Buff
     /// </summary>
     public void onRoundStart(Actor _actor)
     {
-        this.roundStartEvent(_actor);
+        this.roundRun = true;
+        if(this.roundRun) this.roundStartEvent(_actor);
     }
     private void _onRoundStart(Actor _actor)
     {
@@ -142,7 +209,7 @@ public class Buff
     /// </summary>
     public void onRoundEnd(Actor _actor)
     {
-        this.roundEndEvent(_actor);
+        if (this.roundRun) this.roundEndEvent(_actor);
     }
     private void _onRoundEnd(Actor _actor)
     {
@@ -219,4 +286,59 @@ public class Buff
     {
         
     }
+
+
+    /// <summary>
+    /// 委托方法 更改PlayerActor的数值 并将roundRun置false
+    /// </summary>
+    /// <param name="_actor"></param>
+    public void ChangePlayerActorValueOnce(Actor _actor)
+    {
+        ControlManager.instance.playerActor.SanChange(this.sanValue);
+        ControlManager.instance.playerActor.StaminaChange(this.staminaValue);
+
+        //if (typeof(PlayerActor) == _actor.GetType())
+        //{
+        //    PlayerActor playerActor = _actor as PlayerActor;
+        //    playerActor.SanChange(this.sanValue);
+        //    playerActor.StaminaChange(this.staminaValue);
+        //}
+        this.roundRun = false;
+    }
+
+    /// <summary>
+    /// 委托方法 更改PlayerActor的数值 
+    /// </summary>
+    /// <param name="_actor"></param>
+    public void ChangePlayerActorValue(Actor _actor)
+    {
+        ControlManager.instance.playerActor.SanChange(this.sanValue);
+        ControlManager.instance.playerActor.StaminaChange(this.staminaValue);
+    }
+
+    public void PerformStopRound(Actor _actor)
+    {
+        _actor.roundRun = false;
+    }
+
+    /// <summary>
+    /// 委托方法 效果减半
+    /// </summary>
+    /// <param name="_actor"></param>
+    /// <param name="_value"></param>
+    public void PerformEffectHalved(Actor _actor, ref int _value)
+    {
+        _value /= 2;
+    }
+
+    /// <summary>
+    /// 委托方法 效果减半
+    /// </summary>
+    /// <param name="_actor"></param>
+    /// <param name="_value"></param>
+    public void PerformDoublingEffect(Actor _actor, ref int _value)
+    {
+        _value *= 2;
+    }
+
 }
