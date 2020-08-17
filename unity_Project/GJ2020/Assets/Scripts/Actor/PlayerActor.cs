@@ -24,9 +24,16 @@ public class PlayerActor : Actor
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+
+    //}
+
+    public override void ActionBeforeRound()
     {
-        
+        this.staminaValue = GlobalManager.fatigueValues;
+        Debug.LogWarning("[StaminaInif]" + this.staminaValue);
+        base.ActionBeforeRound();
     }
 
     public override void ActionTodo()
@@ -34,11 +41,9 @@ public class PlayerActor : Actor
         ControlManager.instance.CreateCardList();
     }
 
-    public override void OnRoundStart()
+    public override void ActionAfterRound()
     {
-        this.staminaValue = GlobalManager.fatigueValues;
-        Debug.LogWarning("[StaminaInif]" + this.staminaValue);
-        base.OnRoundStart();
+        base.ActionAfterRound();
     }
 
     /// <summary>

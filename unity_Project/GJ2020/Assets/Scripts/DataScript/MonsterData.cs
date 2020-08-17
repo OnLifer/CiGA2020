@@ -56,6 +56,7 @@ public class MonsterData
         _actorComponent.SettingData(
             this.monster_ID,
             this.monster_Name,
+            this.init_RoundNum,
             this.monsterskillid_Array,
             this.spineAnime_Name
         );
@@ -81,7 +82,7 @@ public class MonsterData
             skillIdStr += item + ",";
         }
 
-        return this.monster_ID + " : " + this.monster_Name + " : " + skillIdStr + " : " + this.spineAnime_Name;
+        return this.monster_ID + " : " + this.monster_Name + " : " + this.init_RoundNum +" : " + skillIdStr + " : " + this.spineAnime_Name;
     }
 
     //public string toString()

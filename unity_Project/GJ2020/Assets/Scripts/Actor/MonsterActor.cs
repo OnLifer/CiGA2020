@@ -53,12 +53,14 @@ public class MonsterActor : Actor
     public void SettingData(
         int _id,
         string _name,
+        int _roundNum,
         List<int> _skillList,
         string _spineFileName
     )
     {
         this.id = _id;
         this.monsterName = _name;
+        this.roundNum = _roundNum;
         this.spineFileName = _spineFileName;
 
         foreach (int item in _skillList)
@@ -69,21 +71,6 @@ public class MonsterActor : Actor
         }
     }
 
-    public override void OnRoundStart()
-    {
-        base.OnRoundStart();
-    }
-    public override void EndMyRound()
-    {
-        this.roundNum--;
-        if(this.roundNum <= 0)
-        {
-            Destroy(this.gameObject);
-            ControlManager.instance.monsterActor = null;
-            return;
-        }
-        this.OnRoundEnd();
-    }
 
     public override void ActionTodo()
     {
@@ -94,5 +81,18 @@ public class MonsterActor : Actor
         }
 
         this.EndMyRound();
+    }
+
+    public override void ActionAfterRound()
+    {
+        this.roundNum--;
+        if (this.roundNum <= 0)
+        {
+            Destroy(this.gameObject);
+            ControlManager.instance.monsterActor = null;
+            this.RoundEndToNextRound();
+            return;
+        }
+        base.ActionAfterRound();
     }
 }

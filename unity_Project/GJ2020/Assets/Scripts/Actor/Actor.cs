@@ -49,6 +49,7 @@ public class Actor : MonoBehaviour
     /// </summary>
     public void Action()
     {
+        this.ActionBeforeRound();
         this.OnRoundStart();
         if (this.roundRun)
         {
@@ -62,6 +63,10 @@ public class Actor : MonoBehaviour
 
     }
 
+    public virtual void ActionBeforeRound()
+    {
+
+    }
     /// <summary>
     /// 用于继承复写的具体行为
     /// </summary>
@@ -71,14 +76,62 @@ public class Actor : MonoBehaviour
         this.EndMyRound();
     }
 
+    public virtual void ActionAfterRound()
+    {
+        this.roundRun = false;
+    }
+
     /// <summary>
     /// 结束我的回合
     /// </summary>
     public virtual void EndMyRound()
     {
+        this.roundRun = false;
         this.OnRoundEnd();
     }
 
+    #region 事件方法
+    /// <summary>
+    /// 回合开始时调用
+    /// </summary>
+    public virtual void OnRoundStart()
+    {
+
+        foreach (Buff item in this.buffList)
+        {
+            item.onRoundStart(this);
+        }
+    }
+
+    /// <summary>
+    /// 回合结束时调用
+    /// </summary>
+    public virtual void OnRoundEnd()
+    {
+        foreach (Buff item in this.buffList)
+        {
+            item.onRoundEnd(this);
+        }
+
+        foreach (Buff item in this.removeBuffList)
+        {
+            //this.ReadyToRemoveBuff(item);
+            this.buffList.Remove(item);
+        }
+
+        this.removeBuffList.Clear();
+
+        this.ActionAfterRound();
+
+        this.RoundEndToNextRound();
+    }
+
+    public void RoundEndToNextRound()
+    {
+        ControlManager.instance.NextRound();
+    }
+
+    #region Buff方法
     /// <summary>
     /// 添加Buff 并自动调用buff.onCreated()
     /// </summary>
@@ -86,7 +139,7 @@ public class Actor : MonoBehaviour
     public void AddBuff(Buff _buff)
     {
         int index = this.buffList.FindIndex(t => t.id == _buff.id);
-        if(index >= 0)
+        if (index >= 0)
         {
             this.buffList[index] = _buff;
         }
@@ -115,42 +168,7 @@ public class Actor : MonoBehaviour
     {
         this.removeBuffList.Add(_buff);
     }
-
-
-    #region 事件方法
-    /// <summary>
-    /// 回合开始时调用
-    /// </summary>
-    public virtual void OnRoundStart()
-    {
-
-        foreach (Buff item in this.buffList)
-        {
-            item.onRoundStart(this);
-        }
-    }
-
-    /// <summary>
-    /// 回合结束时调用
-    /// </summary>
-    public virtual void OnRoundEnd()
-    {
-        this.roundRun = false;
-
-        foreach (Buff item in this.buffList)
-        {
-            item.onRoundEnd(this);
-        }
-
-        foreach (Buff item in this.removeBuffList)
-        {
-            //this.ReadyToRemoveBuff(item);
-            this.buffList.Remove(item);
-        }
-
-        this.removeBuffList.Clear();
-        ControlManager.instance.NextRound();
-    }
+    #endregion
 
     /// <summary>
     /// 出现

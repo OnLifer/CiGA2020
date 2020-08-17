@@ -18,14 +18,11 @@ public class BuffCreater : MonoBehaviour
 
     public static Buff Create(int _buffId)
     {
-        foreach (BuffData item in BuffData.dataList)
+        BuffData data = BuffData.dataList.Find(t => t.condition_ID == _buffId);
+        if(data != null)
         {
-            if(item.condition_ID == _buffId)
-            {
-                Buff buff = item.CreateMe();
-                //Buff buff = new Buff(item);
-                return buff;
-            }
+            Buff buff = data.CreateMe();
+            return buff;
         }
 
         Debug.LogWarning("Can't find the Buff in [BuffDataList]");

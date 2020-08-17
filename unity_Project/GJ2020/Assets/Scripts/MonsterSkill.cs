@@ -51,7 +51,7 @@ public class MonsterSkill
             case Enum.SubjectToEnum.player:
                 target = _playerActor;
                 _playerActor.SanChange(this.sanValue);
-                _playerActor.StaminaChange(this.sanValue);
+                _playerActor.StaminaChange(this.staminaValue);
                 break;
             case Enum.SubjectToEnum.enemy:
                 target = _myActor;

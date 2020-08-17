@@ -1235,6 +1235,7 @@ MonoBehaviour:
     type: 3}
   monsterPrefab: {fileID: 7420044948857675772, guid: e67ae3b91d0a9f9479f59cfb7f2be491,
     type: 3}
+  cardListTransform: {fileID: 0}
   sanText: {fileID: 249203504}
   staText: {fileID: 65184008}
   roundText: {fileID: 1329159286}
@@ -1242,7 +1243,6 @@ MonoBehaviour:
   nowMonsterIndex: 0
   monsterActor: {fileID: 1133705980}
   cardList: []
-  cardListTransform: {fileID: 0}
 --- !u!114 &1673033975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1404,6 +1404,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420044948857675772, guid: e67ae3b91d0a9f9479f59cfb7f2be491,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e67ae3b91d0a9f9479f59cfb7f2be491, type: 3}

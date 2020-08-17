@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class ControlManager : MonoSingleton<ControlManager>
     [Space()]
     public GameObject cardPrefab = null;
     public GameObject monsterPrefab = null;
+    public Transform cardListTransform;
 
     [Header("UI")]
     public Text sanText = null;
@@ -36,14 +38,20 @@ public class ControlManager : MonoSingleton<ControlManager>
     /// <summary>手牌列表</summary>
     public List<Card> cardList = new List<Card>();
 
-    public Transform cardListTransform;
+    /// <summary>是否可以在update中进行NextRound()</summary>
+    private bool roundUpdate = true;
+
     private void Start()
     {
         cardListTransform = GameObject.Find("CardList").transform;
         this.monsterActor = null;
-        NextRound();
         this.UIBindToEvent();
+
+        this.CreateNewMonster(true);
+        NextRound();
     }
+
+    
 
     #region 图方便的UI绑定
     private void UIBindToEvent()
@@ -75,25 +83,30 @@ public class ControlManager : MonoSingleton<ControlManager>
         if(this.roundText) this.roundText.text = "Round: " + (_value+1);
     }
     #endregion
-    /// <summary>
-    /// 下一回合
-    /// </summary>
-    public void NextRound()
-    {
-        Debug.LogWarning("[NextRound]");
 
-        
+
+    private void Update()
+    {
+        this.RoundUpdate();
+    }
+
+    public void RoundUpdate()
+    {
+        if (!this.roundUpdate) return;
+
+        this.roundUpdate = false;
 
         if (this.playerActor != null && this.playerActor.roundRun)
         {
             //this.playerActor.staminaValue = GlobalManager.fatigueValues;
-            this.playerActor.staminaValue = 5;
+            Debug.Log("[玩家回合]");
             this.playerActor.Action();
             return;
         }
 
         if (this.monsterActor != null && this.monsterActor.roundRun)
         {
+            Debug.Log("[敌人回合]");
             this.monsterActor.Action();
             return;
         }
@@ -103,9 +116,73 @@ public class ControlManager : MonoSingleton<ControlManager>
         Debug.Log("[Next Round] " + this.roundCount);
 
         if (this.monsterActor == null) this.CreateNewMonster();
+        if (this.monsterActor == null)
+        {
+            Debug.LogError("[Don't have MonsterActor]");
+        }
 
         this.playerActor.roundRun = true;
         this.monsterActor.roundRun = true;
+
+        this.NextRound();
+    }
+
+    /// <summary>
+    /// 下一回合
+    /// </summary>
+    public void NextRound()
+    {
+        this.roundUpdate = true;
+        Debug.LogWarning("[NextRound]");
+
+        //while (true)
+        //{
+        //    if (this.playerActor != null && this.playerActor.roundRun)
+        //    {
+        //        //this.playerActor.staminaValue = GlobalManager.fatigueValues;
+        //        this.playerActor.staminaValue = 5;
+        //        this.playerActor.Action();
+        //        break;
+        //    }
+
+        //    if (this.monsterActor != null && this.monsterActor.roundRun)
+        //    {
+        //        this.monsterActor.Action();
+        //        break;
+        //    }
+
+        //    this.roundCount++;
+        //    this.RoundTextChange(this.roundCount);
+        //    Debug.Log("[Next Round] " + this.roundCount);
+
+        //    if (this.monsterActor == null) this.CreateNewMonster();
+
+        //    this.playerActor.roundRun = true;
+        //    this.monsterActor.roundRun = true;
+        //}
+
+        //if (this.playerActor != null && this.playerActor.roundRun)
+        //{
+        //    //this.playerActor.staminaValue = GlobalManager.fatigueValues;
+        //    this.playerActor.staminaValue = 5;
+        //    this.playerActor.Action();
+        //    return;
+        //}
+
+        //if (this.monsterActor != null && this.monsterActor.roundRun)
+        //{
+        //    this.monsterActor.Action();
+        //    return;
+        //}
+
+        //this.roundCount++;
+        //this.RoundTextChange(this.roundCount);
+        //Debug.Log("[Next Round] " + this.roundCount);
+
+        //if (this.monsterActor == null) this.CreateNewMonster();
+
+        //this.playerActor.roundRun = true;
+        //this.monsterActor.roundRun = true;
 
     }
 
@@ -121,13 +198,13 @@ public class ControlManager : MonoSingleton<ControlManager>
     /// <summary>
     /// 创建新的怪物 若当前 nowMonsterIndex 索引以大于总数量，则游戏结束
     /// </summary>
-    public void CreateNewMonster()
+    public void CreateNewMonster(bool _roundRun = false)
     {
         if (this.monsterPrefab == null) return;
 
 
         MonsterData monsterData = null;
-        MonsterActor monster = null;
+        //MonsterActor monster = null;
         while(monsterData == null)
         {
             this.nowMonsterIndex++;
@@ -145,6 +222,7 @@ public class ControlManager : MonoSingleton<ControlManager>
         GameObject monsterObject = Instantiate(this.monsterPrefab);
 
         MonsterActor actor = monsterObject.GetComponent<MonsterActor>();
+        actor.roundRun = _roundRun;
         monsterData.SettingData(actor);
 
         this.monsterActor = actor;

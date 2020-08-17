@@ -1,0 +1,333 @@
+<mxfile host="9c5e9626-585b-4ad1-9adc-25d63dc936cc" modified="2020-08-17T16:39:54.507Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.48.0 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="Z7xgOTxi_hL5D-fcqLqE" version="13.1.3">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
+        <mxGraphModel dx="1755" dy="1162" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="4" value="ControlManager" style="swimlane;startSize=23;" vertex="1" parent="1">
+                    <mxGeometry width="710" height="1700" as="geometry">
+                        <mxRectangle width="120" height="23" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="RoundUpdate()" style="swimlane;glass=0;comic=0;rounded=0;shadow=0;fillColor=#ffffff;swimlaneFillColor=#CCFFCC;" vertex="1" parent="4">
+                    <mxGeometry x="60" y="80" width="600" height="1200" as="geometry">
+                        <mxRectangle x="20" y="40" width="120" height="23" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="Action()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="5">
+                    <mxGeometry x="420" y="370" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="5" source="22" target="24">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="597.5" y="1120" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="480" y="1090"/>
+                            <mxPoint x="235" y="1090"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="126" value="true" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;strokeColor=#000000;" edge="1" parent="5" source="30" target="22">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="380" y="470"/>
+                            <mxPoint x="380" y="400"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="127" value="true" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;strokeColor=#000000;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="5" source="23" target="22">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="400" y="460" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="380" y="330"/>
+                            <mxPoint x="380" y="400"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="128" value="" style="group" vertex="1" connectable="0" parent="5">
+                    <mxGeometry x="117.5" y="60" width="432.5" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="125" value="" style="group" vertex="1" connectable="0" parent="128">
+                    <mxGeometry width="432.5" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Start" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="125">
+                    <mxGeometry x="57.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="判断是否可以更新&lt;br&gt;roundUpdate" style="html=1;whiteSpace=wrap;aspect=fixed;shape=isoRectangle;" vertex="1" parent="125">
+                    <mxGeometry x="42.5" y="100" width="150" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="判断玩家是否已经动作过&lt;br&gt;playerActor.roundRun" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="125">
+                    <mxGeometry x="8.75" y="230" width="217.5" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="判断怪物是否已经动作过&lt;br&gt;monsterActor.roundRun" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="125">
+                    <mxGeometry x="25" y="370" width="185" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="大回合自增&lt;br&gt;roundCount++" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="125">
+                    <mxGeometry x="57.5" y="520" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="判断是否还有怪物&lt;br&gt;monsterActor == null" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="125">
+                    <mxGeometry y="610" width="235" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="创建新怪物&lt;br&gt;CreateNewMonster()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="125">
+                    <mxGeometry x="57.5" y="750" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="重置所有演员的roundRun = true" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="125">
+                    <mxGeometry x="57.5" y="850" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="this.NextRound()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="125">
+                    <mxGeometry x="57.5" y="940" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="125" source="10" target="13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="true" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="125" source="13" target="23">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="235" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="false" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="125" source="23" target="30">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="false" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="125" source="30" target="36">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="235" y="590" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="125" source="36" target="37">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="true" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="125" source="37" target="39">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="125" source="39" target="41">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="false" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="125" source="37" target="41">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="125" source="41" target="52">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="End" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="5">
+                    <mxGeometry x="175" y="1120" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="5" source="52" target="24">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="false" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="5" source="13" target="24">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="51" y="205"/>
+                            <mxPoint x="51" y="1090"/>
+                            <mxPoint x="235" y="1090"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;fillColor=#fa6800;strokeColor=#C73500;jumpStyle=arc;jumpSize=12;" edge="1" parent="4" source="44" target="52">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="NextRound()" style="swimlane;swimlaneFillColor=#CCFFCC;" vertex="1" parent="4">
+                    <mxGeometry x="60" y="1340" width="200" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="44" source="47" target="48">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="Start" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="44">
+                    <mxGeometry x="40" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="44" source="48" target="50">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="打开回合更新开关&lt;br&gt;this.roundUpdate = true" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="44">
+                    <mxGeometry x="40" y="140" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="End" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="44">
+                    <mxGeometry x="40" y="240" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="Actor" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="900" width="1440" height="1700" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="Action()" style="swimlane;labelBackgroundColor=none;swimlaneFillColor=#CCFFCC;" vertex="1" parent="58">
+                    <mxGeometry x="67" y="80" width="1173" height="1620" as="geometry"/>
+                </mxCell>
+                <mxCell id="114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shadow=0;startArrow=classic;startFill=1;endArrow=classic;endFill=1;fillColor=#fa6800;strokeColor=#C73500;" edge="1" parent="60" source="112" target="78">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="执行进入回合事件&#10;this.OnRoundStart()" style="swimlane;rounded=0;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;startSize=50;" vertex="1" parent="60">
+                    <mxGeometry x="473" y="140" width="417.5" height="415.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=none;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="77" source="80" target="81">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" value="Start" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="77">
+                    <mxGeometry x="34.25" y="75.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=none;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="77" source="81" target="83">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="true" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="84">
+                    <mxGeometry x="-0.0226" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=none;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="77" source="81" target="88">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" value="遍历Buff" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="77">
+                    <mxGeometry x="30.5" y="185.5" width="127.5" height="74.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="83" value="buff.onRoundStart()" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="77">
+                    <mxGeometry x="220.5" y="192.75" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=none;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="77" source="83" target="81">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="230.5" y="125.5" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="281" y="156"/>
+                            <mxPoint x="94" y="156"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="88" value="End" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="77">
+                    <mxGeometry x="34.25" y="305.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="执行结束回合事件&#10;this.OnRoundEnd()" style="swimlane;rounded=0;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;startSize=50;" vertex="1" parent="60">
+                    <mxGeometry x="473" y="590" width="417" height="830" as="geometry"/>
+                </mxCell>
+                <mxCell id="95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="91" target="92">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="91" value="Start" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="78">
+                    <mxGeometry x="59.379999999999995" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="92" target="93">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="92" target="100">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="92" value="遍历BuffList" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="78">
+                    <mxGeometry x="55.629999999999995" y="190" width="127.5" height="74.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="93" target="92">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="160"/>
+                            <mxPoint x="119" y="160"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="93" value="buff.onRoundEnd()" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="78">
+                    <mxGeometry x="245.63" y="197.25" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="94" value="End" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="78">
+                    <mxGeometry x="59.37" y="730" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="100" target="104">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" value="遍历removeBuffList" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="78">
+                    <mxGeometry x="55.629999999999995" y="320" width="127.5" height="74.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="78" source="102" target="100">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="306" y="290"/>
+                            <mxPoint x="119" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="102" value="移除buff" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="78">
+                    <mxGeometry x="245.63" y="327.25" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="100" target="102">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="104" target="106">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="清空 待移除Buff 清单&lt;br&gt;clear removeBuffList" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="78">
+                    <mxGeometry x="59.379999999999995" y="430" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="116" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="106" target="115">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="执行可重载的回合动作&lt;br&gt;this.ActionTodo()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="78">
+                    <mxGeometry x="36.879999999999995" y="530" width="165" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="119" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="78" source="115" target="94">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="115" value="执行并通知回合管理器&lt;br&gt;this.RoundEndToNextRound()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="78">
+                    <mxGeometry x="20" y="630" width="198.75" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shadow=0;startArrow=classic;startFill=1;endArrow=classic;endFill=1;strokeColor=#C73500;fillColor=#fa6800;" edge="1" parent="60" source="108" target="77">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="373" y="285"/>
+                            <mxPoint x="373" y="348"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124" value="" style="group" vertex="1" connectable="0" parent="60">
+                    <mxGeometry x="105" y="40" width="288" height="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="Start" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="124">
+                    <mxGeometry x="56.25" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="执行可重载的回合前&lt;br&gt;this.ActionBeforeRound()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="124">
+                    <mxGeometry x="33.75" y="100" width="165" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=none;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="124" source="61" target="63">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="判断当前演员是否看可以继续回合&lt;br&gt;this.roundRun == true" style="rhombus;whiteSpace=wrap;html=1;rounded=0;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="124">
+                    <mxGeometry y="340" width="232.5" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="执行可重载的回合动作&lt;br&gt;this.ActionTodo()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="124">
+                    <mxGeometry x="33.75" y="495.5" width="165" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="true" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=none;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="124" source="68" target="70">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="调用结束回合&lt;br&gt;this.EndMyRound()" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="124">
+                    <mxGeometry x="56.25" y="610" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=none;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="124" source="68" target="72">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="268" y="390"/>
+                            <mxPoint x="268" y="640"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=none;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="124" source="70" target="72">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="112" value="&lt;span style=&quot;font-weight: 700&quot;&gt;执行结束回合事件&lt;/span&gt;&lt;br style=&quot;padding: 0px ; margin: 0px ; font-weight: 700&quot;&gt;&lt;span style=&quot;font-weight: 700&quot;&gt;this.OnRoundEnd()&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="124">
+                    <mxGeometry x="56.25" y="730" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="113" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="124" source="72" target="112">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="110" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="124" source="108" target="68">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="108" value="&lt;span style=&quot;font-weight: 700&quot;&gt;执行进入回合事件&lt;/span&gt;&lt;br style=&quot;padding: 0px ; margin: 0px ; font-weight: 700&quot;&gt;&lt;span style=&quot;font-weight: 700&quot;&gt;this.OnRoundStart()&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="124">
+                    <mxGeometry x="45.620000000000005" y="210" width="141.25" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="109" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="124" source="63" target="108">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="120" value="End" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;glass=0;comic=0;labelBackgroundColor=none;fillColor=#ffffff;gradientColor=none;" vertex="1" parent="124">
+                    <mxGeometry x="56.25" y="840" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="122" style="edgeStyle=orthogonalEdgeStyle;rounded=0;comic=0;jumpStyle=arc;jumpSize=12;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="124" source="112" target="120">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;fillColor=#fa6800;strokeColor=#C73500;jumpStyle=none;comic=0;shadow=0;" edge="1" parent="1" source="22" target="60">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
